@@ -15,7 +15,7 @@ name = c!3 . end
 Parenthesized
 ==================
 
-name = (c!3 . end)
+name = c!(3) . end
 
 ---
 
@@ -25,90 +25,96 @@ name = (c!3 . end)
             (end))))
 
 ==================
-New channel - 1
+*
 ==================
 
-name = (nu x) c!3 . end
+name = c!3 * (4) . end
 
 ---
 
 (source_file
     (proc_declaration (name)
-        (nu (name)
-            (send (name) (expr (factor (term (digit))))
-                (end)))))
-
-==================
-New channel - 2
-==================
-
-name =  c!3 . (nu x) end
-
----
-
-(source_file
-    (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
-            (nu (name)
-                (end)))))
-
-==================
-Parellel - 1
-==================
-
-name =  x!3 . end | end
-
----
-
-(source_file
-    (proc_declaration (name)
-        (par
-            (send (name) (expr (factor (term (digit))))
-                (end))
+        (send (name) (expr (factor (term (digit))) (factor (term (digit))))
             (end))))
 
 ==================
-Parellel - 2
+/
 ==================
 
-name = x!3 . end | x!4 . end
+name = c!((3) / 4) . (end)
 
 ---
 
 (source_file
     (proc_declaration (name)
-        (par
-            (send (name) (expr (factor (term (digit))))
-                (end))
-            (send (name) (expr (factor (term (digit))))
-                (end)))))
+        (send (name) (expr (factor (term (digit))) (factor (term (digit))))
+            (end))))
 
 ==================
-Receive - 1
++
 ==================
 
-name =  x!3 . end | x?y . end
+name = c!3 + 4 . end
 
 ---
 
 (source_file
     (proc_declaration (name)
-        (par
-            (send (name) (expr (factor (term (digit))))
-                (end))
-            (recv (name) (name)
-                (end)))))
+        (send (name) (expr (factor (term (digit)) (term (digit))))
+            (end))))
 
 ==================
-Receive - 2
+-
 ==================
 
-name =  x!3 . x?y . end
+name = c!3 - (4) . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (expr (factor (term (digit)) (term (digit))))
+            (end))))
+
+==================
+Mixed
+==================
+
+name = c!3 * ((4) + x) . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (expr
+                (factor (term (digit)))
+                (factor
+                    (term (digit))
+                    (term (name))))
+            (end))))
+
+==================
+digit
+==================
+
+name = c!3 . end
 
 ---
 
 (source_file
     (proc_declaration (name)
         (send (name) (expr (factor (term (digit))))
-            (recv (name) (name)
-                (end)))))
+            (end))))
+
+==================
+name
+==================
+
+name = c!x . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (expr (factor (term (name))))
+            (end))))

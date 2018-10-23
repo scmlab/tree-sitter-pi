@@ -33,6 +33,7 @@ module.exports = grammar({
             $.end
         ),
 
+        // 5 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
 
         nu: $ => prec(9, seq('(', 'nu',  $.name, ')', $._proc)),
@@ -41,58 +42,39 @@ module.exports = grammar({
 
         send: $ => prec(8, seq($.name, '!',  $.expr, '.', $._proc)),
 
-
-        expr: $ => $._digit,
-        // par: $ => prec(900, $._par),
-        // _par: $ => choice(
-        //     prec(910, seq( '(', $._par, ')')),
-        //     prec.right(sep0(parSymbol, 10, $._par)),
-        //     $.seq
-        // ),
-        // // par: $ => prec.right(sep0(parSymbol, 10, $._seq)),
-        //
-        // seq: $ => prec(800, $._seq),
-        // // seq: $ => prec(800, $._seq),
-        // _seq: $ => prec(810, choice(
-        //     prec.right(sep0(seqSymbol, 15, $._seq)),
-        //     seq( '(', $._seq, ')'),
-        //     // seq( '(', $._seq, ')'),
-        //     $._proc
-        // )),
-
-        // seq: $ => choice(
-        //     // $._par,
-        //     prec.right(sep0(seqSymbol, 15, $._proc)),
-        // ),
-        //
-        // _proc: $ => choice(
-        //     seq( '(', $._proc, ')'),
-        //     // prec.right(sep1(parSymbol, 10, $._proc)),
-        //     // $.send,
-        //     // $.recv,
-        //     // $.nu,
-        //     // $.name,
-        //     // $.end
-        //     $.proc
-        // ),
-        //
-        // // seperated by '|', right associative
-        // _parallel: $ => prec.right(sep1(parSymbol, 10, $._proc)),
-
-        // _proc: $ => choice(
-        //     // seq( '(', $.par, ')'),
-        //     // $._parallel,
-        //
-        //     // prec.right(sep1(seqSymbol, 15, $.process)),
-        //     // $.send,
-        //     // $.recv,
-        //     // $.nu,
-        //     // $.name,
-        //     $.end
-        // ),
-
-
         end: $ => token('end'),
+
+        // expressions
+        expr: $ => $._expr,
+        _expr: $ => choice(
+            prec(999, seq( '(', $._expr, ')')),
+            seq($.factor, '*', $.factor),
+            seq($.factor, '/', $.factor),
+            $.factor
+        ),
+
+        factor: $ => $._factor,
+        _factor: $ => choice(
+            prec(999, seq( '(', $._factor, ')')),
+            seq($.term, '+', $.term),
+            seq($.term, '-', $.term),
+            $.term
+        ),
+
+        term: $ => $._term,
+        _term: $ => choice(
+            prec(999, seq( '(', $._term, ')')),
+            $.name,
+            $.digit,
+            $.boolean
+        ),
+
+        name: $ => /[a-z](\w|')*/,
+        digit: $ => /\-?[0-9]+/,
+        boolean: $ => choice(
+            token('True'),
+            token('False'),
+        ),
         // //
         // term: $ => prec.right(sep1(seqSymbol, 15, $._atomic)),
         // //
@@ -211,10 +193,8 @@ module.exports = grammar({
         //         '-','~'
         //     ),
         // ## ## ## ## ##
-        _digit: $ => /\-?[0-9]+/,
         label: $ => /[A-Z][A-Z0-9]*/,
         cmd: $ => /[A-Z](\w|')*/,
-        name: $ => /[a-z](\w|')*/,
 
         comment: $ => token(choice(
             prec(100, seq('--', /.*/)),
