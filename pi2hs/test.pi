@@ -1,0 +1,11 @@
+// pattern and tuple
+p0 = x!<1,2>.x?<c,d>.end
+// expr
+// label case
+p0 = x?{L1 -> p3 ; L2 -> p2}
+// pi term
+p2 = nu i j : x!i . x?y . end | x!j . x?y . end
+p3 = nu i : nu j : (x!i . end | x!j . end) . end
+// send
+// recv
+// cmd
