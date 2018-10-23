@@ -1,0 +1,91 @@
+==================
+Everything - A
+==================
+
+pA = x!a . end | (x!b | x!c) . x?a . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (term
+            (send (name) (expr (name)))
+            (end))
+        (term
+            (term
+                (term (send (name) (expr (name))))
+                (term (send (name) (expr (name)))))
+        (recv (name) (name))
+        (end))))
+
+==================
+Everything - B
+==================
+
+pB = x?y . (nu i j k : y!a ) . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (term
+            (recv (name) (name))
+            (term (term
+                (nu (nu_name) (nu_name) (nu_name)
+                    (nu_body
+                        (term (send (name) (expr (name))))))))
+            (end))))
+
+==================
+Everything - C
+==================
+
+pC = x!1+2-1 . x?res . Print!res .end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (term
+            (send (name)
+                (expr (expr_biop
+                    (expr (expr_biop
+                        (expr (digit))
+                        (biop)
+                        (expr (digit))))
+                    (biop)
+                    (expr (digit)))))
+            (recv (name) (name))
+            (send (cmd) (expr (name))) (end))))
+
+==================
+Everything - D
+==================
+
+pD = nu i j : x!(if n >= 1 then i else j) . x?red .end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (term (nu (nu_name) (nu_name)
+            (nu_body
+                (term (send (name) (expr (expr_condition
+                    (expr (expr_biop
+                        (expr (name))
+                        (biop) (expr (digit))))
+                    (expr (name))
+                    (expr (name)))))
+                (recv (name) (name)) (end)))))))
+
+==================
+Everything - E
+==================
+
+pE = x!
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (term (send (name) (expr)))))
