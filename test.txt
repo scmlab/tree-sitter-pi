@@ -1,0 +1,6 @@
+// pi term
+pA = x!a . end | (x!b | x!c) . x?a . end
+pB = x?y . (nu i j k : y!a ) . end
+pC = x!1+2-1 . x?res . Print!res .end
+pD = nu i j : x!(if n >= 1 then i else j) . x?red .end
+pE = x!
