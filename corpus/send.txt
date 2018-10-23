@@ -1,0 +1,84 @@
+==================
+Simple
+==================
+
+name = c!3 . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (expr)
+            (end))))
+
+==================
+Parenthesized
+==================
+
+name = (c!3 . end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (expr)
+            (end))))
+
+==================
+New channel - 1
+==================
+
+name = (nu x) c!3 . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (send (name) (expr)
+                (end)))))
+
+==================
+New channel - 2
+==================
+
+name =  c!3 . (nu x) end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (expr)
+            (nu (name)
+                (end)))))
+
+==================
+Parellel - 1
+==================
+
+name =  x!3 . end | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (send (name) (expr)
+                (end))
+            (end))))
+
+==================
+Parellel - 2
+==================
+
+name = x!3 . end | x!4 . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (send (name) (expr)
+                (end))
+            (send (name) (expr)
+                (end)))))

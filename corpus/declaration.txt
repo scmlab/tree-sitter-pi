@@ -8,7 +8,7 @@ name = end
 
 (source_file
     (proc_declaration (name)
-        (par (seq (end)))))
+        (end)))
 
 ==================
 Empty
@@ -30,6 +30,6 @@ name = end
 
 (source_file
     (proc_declaration (name)
-        (par (seq (end))))
+        (end))
     (proc_declaration (name)
-        (par (seq (end)))))
+        (end)))

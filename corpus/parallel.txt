@@ -1,0 +1,80 @@
+==================
+Simple
+==================
+
+name = end | end | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (end)
+            (par
+                (end)
+                (end)))))
+
+
+==================
+Parenthesized - 1
+==================
+
+name = end | (end) | ((end))
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (end)
+            (par
+                (end)
+                (end)))))
+
+==================
+Parenthesized - 2
+==================
+
+name = end | ((end | end) | end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (end)
+            (par
+                (par
+                    (end)
+                    (end))
+                (end)))))
+
+==================
+New channel - 1
+==================
+
+name = (nu x) end | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (nu (name)
+                (end))
+            (end))))
+
+==================
+New channel - 2
+==================
+
+name = (nu x) (end | end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (par
+                (end)
+                (end)))))

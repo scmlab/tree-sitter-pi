@@ -1,0 +1,83 @@
+==================
+Simple
+==================
+
+name = c?x . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (recv (name) (name)
+            (end))))
+
+==================
+Parenthesized
+==================
+
+name = (c?x . end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (recv (name) (name)
+            (end))))
+
+==================
+New channel - 1
+==================
+
+name = (nu x) c?x . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (recv (name) (name)
+                (end)))))
+
+==================
+New channel - 2
+==================
+
+name =  c?x . (nu x) end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (recv (name) (name)
+            (nu (name)
+                (end)))))
+
+==================
+Parellel - 1
+==================
+
+name =  (nu x) end | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (nu (name)
+                (end))
+            (end))))
+
+==================
+Parellel - 2
+==================
+
+name =  (nu x) (end | end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (par
+                (end)
+                (end)))))

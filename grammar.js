@@ -22,24 +22,43 @@ module.exports = grammar({
 
         source_file: $ => repeat($.proc_declaration),
 
-        proc_declaration: $ => prec(999, seq($.name, '=', $.par)),
+        proc_declaration: $ => prec(999, seq($.name, '=', $._proc)),
 
-        par: $ => prec(900, $._par),
-        _par: $ => choice(
-            prec(910, seq( '(', $._par, ')')),
-            prec.right(sep0(parSymbol, 10, $._par)),
-            $.seq
+        _proc: $ => choice(
+            prec(999, seq( '(', $._proc, ')')),
+            $.recv,
+            $.send,
+            $.par,
+            $.nu,
+            $.end
         ),
-        // par: $ => prec.right(sep0(parSymbol, 10, $._seq)),
 
-        seq: $ => prec(800, $._seq),
+        par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
+
+        nu: $ => prec(9, seq('(', 'nu',  $.name, ')', $._proc)),
+
+        recv: $ => prec(8, seq($.name, '?',  $.name, '.', $._proc)),
+
+        send: $ => prec(8, seq($.name, '!',  $.expr, '.', $._proc)),
+
+
+        expr: $ => $._digit,
+        // par: $ => prec(900, $._par),
+        // _par: $ => choice(
+        //     prec(910, seq( '(', $._par, ')')),
+        //     prec.right(sep0(parSymbol, 10, $._par)),
+        //     $.seq
+        // ),
+        // // par: $ => prec.right(sep0(parSymbol, 10, $._seq)),
+        //
         // seq: $ => prec(800, $._seq),
-        _seq: $ => prec(810, choice(
-            prec.right(sep0(seqSymbol, 15, $._seq)),
-            seq( '(', $._seq, ')'),
-            // seq( '(', $._seq, ')'),
-            $._proc
-        )),
+        // // seq: $ => prec(800, $._seq),
+        // _seq: $ => prec(810, choice(
+        //     prec.right(sep0(seqSymbol, 15, $._seq)),
+        //     seq( '(', $._seq, ')'),
+        //     // seq( '(', $._seq, ')'),
+        //     $._proc
+        // )),
 
         // seq: $ => choice(
         //     // $._par,
@@ -60,17 +79,17 @@ module.exports = grammar({
         // // seperated by '|', right associative
         // _parallel: $ => prec.right(sep1(parSymbol, 10, $._proc)),
 
-        _proc: $ => choice(
-            seq( '(', $.par, ')'),
-            // $._parallel,
-
-            // prec.right(sep1(seqSymbol, 15, $.process)),
-            // $.send,
-            // $.recv,
-            // $.nu,
-            // $.name,
-            $.end
-        ),
+        // _proc: $ => choice(
+        //     // seq( '(', $.par, ')'),
+        //     // $._parallel,
+        //
+        //     // prec.right(sep1(seqSymbol, 15, $.process)),
+        //     // $.send,
+        //     // $.recv,
+        //     // $.nu,
+        //     // $.name,
+        //     $.end
+        // ),
 
 
         end: $ => token('end'),
@@ -192,7 +211,7 @@ module.exports = grammar({
         //         '-','~'
         //     ),
         // ## ## ## ## ##
-        digit: $ => /\-?[0-9]+/,
+        _digit: $ => /\-?[0-9]+/,
         label: $ => /[A-Z][A-Z0-9]*/,
         cmd: $ => /[A-Z](\w|')*/,
         name: $ => /[a-z](\w|')*/,

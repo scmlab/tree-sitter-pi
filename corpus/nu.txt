@@ -1,0 +1,40 @@
+==================
+Simple
+==================
+
+name = (nu x) end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (end)
+        )))
+
+==================
+Parenthesized - 1
+==================
+
+name = (nu x) (end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (end)
+        )))
+
+==================
+Parenthesized - 2
+==================
+
+name = ((nu x) (end))
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (end))))
