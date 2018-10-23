@@ -1,0 +1,155 @@
+==================
+Simple
+==================
+
+name = end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq (end)))))
+
+==================
+Parenthesized
+==================
+
+name = (end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq (end)))))
+
+==================
+Parallel
+==================
+
+name = end | end | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq (end))
+            (seq (end))
+            (seq (end)))))
+
+==================
+Parallel & Parenthesized - 1
+==================
+
+name = end | (end) | ((end))
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq (end))
+            (seq (end))
+            (seq (end)))))
+
+==================
+Parallel & Parenthesized - 2
+==================
+
+name = end | ((end | end) | end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq (end))
+            (seq (end))
+            (seq (end))
+            (seq (end)))))
+
+==================
+Sequenced
+==================
+
+name = end . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq (end) (end)))))
+
+==================
+Sequenced & Parenthesized
+==================
+
+name = end . ((end) . (end . end)) . end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq
+                (end)
+                (end)
+                (end)
+                (end)
+                (end)))))
+
+==================
+Parellel & Sequenced
+==================
+
+name = end . end | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq
+                (end)
+                (end))
+            (seq
+                (end)))))
+
+
+==================
+Parellel & Sequenced & Parenthesized - 1
+==================
+
+name = end . (end | end)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq
+                (end)
+                (par
+                    (seq (end))
+                    (seq (end)))))))
+
+==================
+Parellel & Sequenced & Parenthesized - 2
+==================
+
+name = end . (end | end) | end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (seq
+                (end)
+                (par
+                    (seq (end))
+                    (seq (end))))
+            (seq (end)))))

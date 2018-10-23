@@ -1,0 +1,35 @@
+==================
+Simple
+==================
+
+name = end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par (seq (end)))))
+
+==================
+Empty
+==================
+
+---
+
+(source_file)
+
+
+==================
+Multiple
+==================
+
+name = end
+name = end
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par (seq (end))))
+    (proc_declaration (name)
+        (par (seq (end)))))
