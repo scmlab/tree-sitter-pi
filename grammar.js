@@ -53,6 +53,8 @@ module.exports = grammar({
             $.factor
         ),
 
+        // mul: $ => seq($.factor, '*', $.factor),
+
         factor: $ => $._factor,
         _factor: $ => choice(
             prec(999, seq( '(', $._factor, ')')),
