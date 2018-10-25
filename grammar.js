@@ -47,39 +47,40 @@ module.exports = grammar({
         // expressions
         // expr: $ => $._expr,
         _expr: $ => choice(
-            prec(999, seq( '(', $._expr, ')')),
+            $.expr_expr,
             $.expr_mul,
             $.expr_div,
             $.expr_factor
         ),
 
-
+        expr_expr: $ => prec(999, seq( '(', $._expr, ')')),
         expr_mul: $ => seq($._factor, '*', $._factor),
         expr_div: $ => seq($._factor, '/', $._factor),
         expr_factor: $ => $._factor,
 
         _factor: $ => choice(
-            prec(998, seq( '(', $._expr, ')')),
+            $.factor_expr,
             $.factor_add,
             $.factor_minus,
             $.factor_term
         ),
 
-        factor_add: $ => seq($.term, '+', $.term),
-        factor_minus: $ => seq($.term, '-', $.term),
-        factor_term: $ => $.term,
+        factor_expr: $ => prec(998, seq( '(', $._expr, ')')),
+        factor_add: $ => seq($._term, '+', $._term),
+        factor_minus: $ => seq($._term, '-', $._term),
+        factor_term: $ => $._term,
 
 
-        term: $ => $._term,
         _term: $ => choice(
-            prec(997, seq( '(', $._expr, ')')),
-            // $.name,
-            $.digit,
-            // $.boolean
+            $.term_expr,
+            $.term_digit,
         ),
 
+        term_expr : $ => prec(997, seq( '(', $._expr, ')')),
+        term_digit: $ => $._digit,
+
+        _digit: $ => /\-?[0-9]+/,
         name: $ => /[a-z](\w|')*/,
-        digit: $ => /\-?[0-9]+/,
         boolean: $ => choice(
             token('True'),
             token('False'),
