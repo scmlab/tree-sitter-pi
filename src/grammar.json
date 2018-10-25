@@ -175,7 +175,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "expr"
+            "name": "_expr"
           },
           {
             "type": "STRING",
@@ -194,10 +194,6 @@
         "type": "STRING",
         "value": "end"
       }
-    },
-    "expr": {
-      "type": "SYMBOL",
-      "name": "_expr"
     },
     "_expr": {
       "type": "CHOICE",
@@ -224,46 +220,54 @@
           }
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "factor"
-            },
-            {
-              "type": "STRING",
-              "value": "*"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "factor"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "factor"
-            },
-            {
-              "type": "STRING",
-              "value": "/"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "factor"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "expr_mul"
         },
         {
           "type": "SYMBOL",
-          "name": "factor"
+          "name": "expr_div"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expr_factor"
         }
       ]
     },
-    "factor": {
+    "expr_mul": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_factor"
+        },
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_factor"
+        }
+      ]
+    },
+    "expr_div": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_factor"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_factor"
+        }
+      ]
+    },
+    "expr_factor": {
       "type": "SYMBOL",
       "name": "_factor"
     },
@@ -272,7 +276,7 @@
       "members": [
         {
           "type": "PREC",
-          "value": 999,
+          "value": 998,
           "content": {
             "type": "SEQ",
             "members": [
@@ -282,7 +286,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_factor"
+                "name": "_expr"
               },
               {
                 "type": "STRING",
@@ -292,44 +296,56 @@
           }
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "term"
-            },
-            {
-              "type": "STRING",
-              "value": "+"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "term"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "factor_add"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "term"
-            },
-            {
-              "type": "STRING",
-              "value": "-"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "term"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "factor_minus"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "factor_term"
+        }
+      ]
+    },
+    "factor_add": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "term"
+        },
+        {
+          "type": "STRING",
+          "value": "+"
         },
         {
           "type": "SYMBOL",
           "name": "term"
         }
       ]
+    },
+    "factor_minus": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "term"
+        },
+        {
+          "type": "STRING",
+          "value": "-"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "term"
+        }
+      ]
+    },
+    "factor_term": {
+      "type": "SYMBOL",
+      "name": "term"
     },
     "term": {
       "type": "SYMBOL",
@@ -340,7 +356,7 @@
       "members": [
         {
           "type": "PREC",
-          "value": 999,
+          "value": 997,
           "content": {
             "type": "SEQ",
             "members": [
@@ -350,7 +366,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_term"
+                "name": "_expr"
               },
               {
                 "type": "STRING",
@@ -361,15 +377,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "name"
-        },
-        {
-          "type": "SYMBOL",
           "name": "digit"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "boolean"
         }
       ]
     },

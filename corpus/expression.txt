@@ -8,7 +8,7 @@ name = c!3 . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (end))))
 
 ==================
@@ -21,7 +21,7 @@ name = c!(3) . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (end))))
 
 ==================
@@ -34,7 +34,7 @@ name = c!3 * (4) . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))) (factor (term (digit))))
+        (send (name) (expr_mul (factor_term (term (digit))) (expr_factor (factor_term (term (digit)))))
             (end))))
 
 ==================
@@ -47,7 +47,7 @@ name = c!((3) / 4) . (end)
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))) (factor (term (digit))))
+        (send (name) (expr_div (expr_factor (factor_term (term (digit)))) (factor_term (term (digit))))
             (end))))
 
 ==================
@@ -60,7 +60,7 @@ name = c!3 + 4 . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit)) (term (digit))))
+        (send (name) (expr_factor (factor_add (term (digit)) (term (digit))))
             (end))))
 
 ==================
@@ -73,24 +73,24 @@ name = c!3 - (4) . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit)) (term (digit))))
-            (end))))
+        (send (name) (expr_factor (factor_minus (term (digit)) (term (expr_factor (factor_term (term (digit))))))) (end))))
 
 ==================
 Mixed
 ==================
 
-name = c!3 * ((4) + x) . end
+name = c!3 * ((4 * 3) + 2) . end
 
 ---
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr
-                (factor (term (digit)))
-                (factor
-                    (term (digit))
-                    (term (name))))
+        (send (name) (expr_mul
+                (factor_term (term (digit)))
+                (expr_factor (factor_add (term (expr_mul
+                        (factor_term (term (digit)))
+                        (factor_term (term (digit)))))
+                    (term (digit)))))
             (end))))
 
 ==================
@@ -103,18 +103,5 @@ name = c!3 . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
-            (end))))
-
-==================
-name
-==================
-
-name = c!x . end
-
----
-
-(source_file
-    (proc_declaration (name)
-        (send (name) (expr (factor (term (name))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (end))))

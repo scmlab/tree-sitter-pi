@@ -40,35 +40,42 @@ module.exports = grammar({
 
         recv: $ => prec(8, seq($.name, '?',  $.name, '.', $._proc)),
 
-        send: $ => prec(8, seq($.name, '!',  $.expr, '.', $._proc)),
+        send: $ => prec(8, seq($.name, '!',  $._expr, '.', $._proc)),
 
         end: $ => token('end'),
 
         // expressions
-        expr: $ => $._expr,
+        // expr: $ => $._expr,
         _expr: $ => choice(
             prec(999, seq( '(', $._expr, ')')),
-            seq($.factor, '*', $.factor),
-            seq($.factor, '/', $.factor),
-            $.factor
+            $.expr_mul,
+            $.expr_div,
+            $.expr_factor
         ),
 
-        // mul: $ => seq($.factor, '*', $.factor),
 
-        factor: $ => $._factor,
+        expr_mul: $ => seq($._factor, '*', $._factor),
+        expr_div: $ => seq($._factor, '/', $._factor),
+        expr_factor: $ => $._factor,
+
         _factor: $ => choice(
-            prec(999, seq( '(', $._factor, ')')),
-            seq($.term, '+', $.term),
-            seq($.term, '-', $.term),
-            $.term
+            prec(998, seq( '(', $._expr, ')')),
+            $.factor_add,
+            $.factor_minus,
+            $.factor_term
         ),
+
+        factor_add: $ => seq($.term, '+', $.term),
+        factor_minus: $ => seq($.term, '-', $.term),
+        factor_term: $ => $.term,
+
 
         term: $ => $._term,
         _term: $ => choice(
-            prec(999, seq( '(', $._term, ')')),
-            $.name,
+            prec(997, seq( '(', $._expr, ')')),
+            // $.name,
             $.digit,
-            $.boolean
+            // $.boolean
         ),
 
         name: $ => /[a-z](\w|')*/,

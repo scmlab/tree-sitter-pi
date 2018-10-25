@@ -8,7 +8,7 @@ name = c!3 . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (end))))
 
 ==================
@@ -21,7 +21,7 @@ name = (c!3 . end)
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (end))))
 
 ==================
@@ -35,7 +35,7 @@ name = (nu x) c!3 . end
 (source_file
     (proc_declaration (name)
         (nu (name)
-            (send (name) (expr (factor (term (digit))))
+            (send (name) (expr_factor (factor_term (term (digit))))
                 (end)))))
 
 ==================
@@ -48,7 +48,7 @@ name =  c!3 . (nu x) end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (nu (name)
                 (end)))))
 
@@ -63,7 +63,7 @@ name =  x!3 . end | end
 (source_file
     (proc_declaration (name)
         (par
-            (send (name) (expr (factor (term (digit))))
+            (send (name) (expr_factor (factor_term (term (digit))))
                 (end))
             (end))))
 
@@ -78,9 +78,9 @@ name = x!3 . end | x!4 . end
 (source_file
     (proc_declaration (name)
         (par
-            (send (name) (expr (factor (term (digit))))
+            (send (name) (expr_factor (factor_term (term (digit))))
                 (end))
-            (send (name) (expr (factor (term (digit))))
+            (send (name) (expr_factor (factor_term (term (digit))))
                 (end)))))
 
 ==================
@@ -94,7 +94,7 @@ name =  x!3 . end | x?y . end
 (source_file
     (proc_declaration (name)
         (par
-            (send (name) (expr (factor (term (digit))))
+            (send (name) (expr_factor (factor_term (term (digit))))
                 (end))
             (recv (name) (name)
                 (end)))))
@@ -109,6 +109,6 @@ name =  x!3 . x?y . end
 
 (source_file
     (proc_declaration (name)
-        (send (name) (expr (factor (term (digit))))
+        (send (name) (expr_factor (factor_term (term (digit))))
             (recv (name) (name)
                 (end)))))
