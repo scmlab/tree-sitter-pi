@@ -6,7 +6,7 @@ name = c!3 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (end))))
@@ -19,7 +19,7 @@ name = (c!3 . end)
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (end))))
@@ -32,7 +32,7 @@ name = c!3 . name
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (call (name)))))
@@ -45,7 +45,7 @@ name = (nu x) c!3 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (send (name) (digit)
@@ -59,7 +59,7 @@ name =  c!3 . (nu x) end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (nu (name)
@@ -73,7 +73,7 @@ name =  x!3 . end | end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (par
             (send (name) (digit)
@@ -88,7 +88,7 @@ name = x!3 . end | x!4 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (par
             (send (name) (digit)
@@ -104,7 +104,7 @@ name =  x!3 . end | x?y . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (par
             (send (name) (digit)
@@ -120,7 +120,7 @@ name =  x!3 . x?y . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (recv (name) (name)

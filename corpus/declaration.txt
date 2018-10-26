@@ -6,7 +6,7 @@ name = end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (end)))
 
@@ -16,7 +16,7 @@ Empty
 
 ---
 
-(source_file)
+(program)
 
 
 ==================
@@ -28,7 +28,7 @@ name = end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (end))
     (proc_declaration (name)

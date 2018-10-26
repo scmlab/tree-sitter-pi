@@ -6,7 +6,7 @@ name = c!3 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (end))))
@@ -19,7 +19,7 @@ name = c!(3) . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (end))))
@@ -32,7 +32,7 @@ name = c!3 * (4) . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (mul (digit) (digit))
             (end))))
@@ -45,7 +45,7 @@ name = c!1 * 2 * 3 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (mul (mul (digit) (digit)) (digit))
             (end))))
@@ -59,7 +59,7 @@ name = c!(3 / (4)) / 2 . (end)
 ---
 
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (div (div (digit) (digit)) (digit))
             (end))))
@@ -71,7 +71,7 @@ name = c!(3 / (4 / 2)) . (end)
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (div (digit) (div (digit) (digit)))
             (end))))
@@ -85,7 +85,7 @@ name = c!3 + 4 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (add (digit) (digit))
             (end))))
@@ -98,7 +98,7 @@ name = c!3 + 4 + 6 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (add (add (digit) (digit)) (digit))
             (end))))
@@ -111,7 +111,7 @@ name = c!3 - (4) . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (sub (digit) (digit))
             (end))))
@@ -124,7 +124,7 @@ name = c!3 - (4) . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (sub (digit) (digit))
             (end))))
@@ -137,7 +137,7 @@ name = c!3 * ((4 * 3) + (2 - 3) / 2) . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (mul
                 (digit)
@@ -156,7 +156,7 @@ name = c!3 . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (send (name) (digit)
             (end))))

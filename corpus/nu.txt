@@ -6,7 +6,7 @@ name = (nu x) end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (end)
@@ -20,7 +20,7 @@ name = (nu x) (end)
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (end)
@@ -34,7 +34,7 @@ name = ((nu x) (end))
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (end))))
@@ -47,7 +47,7 @@ name = ((nu x) name)
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (call (name)))))

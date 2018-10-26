@@ -20,7 +20,7 @@ module.exports = grammar({
 
     rules: {
 
-        source_file: $ => repeat($.proc_declaration),
+        program: $ => repeat($.proc_declaration),
 
         proc_declaration: $ => prec(999, seq($.name, '=', $._proc)),
 

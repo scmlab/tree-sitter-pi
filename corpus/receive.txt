@@ -6,7 +6,7 @@ name = c?x . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (recv (name) (name)
             (end))))
@@ -19,7 +19,7 @@ name = (c?x . end)
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (recv (name) (name)
             (end))))
@@ -32,7 +32,7 @@ name = c?x . name
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (recv (name) (name)
             (call (name)))))
@@ -45,7 +45,7 @@ name = (nu x) c?x . end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (recv (name) (name)
@@ -59,7 +59,7 @@ name =  c?x . (nu x) end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (recv (name) (name)
             (nu (name)
@@ -73,7 +73,7 @@ name =  (nu x) end | end
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (par
             (nu (name)
@@ -88,7 +88,7 @@ name =  (nu x) (end | end)
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (nu (name)
             (par

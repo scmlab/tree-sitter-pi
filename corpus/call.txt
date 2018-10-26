@@ -6,6 +6,6 @@ name = call
 
 ---
 
-(source_file
+(program
     (proc_declaration (name)
         (call (name))))
