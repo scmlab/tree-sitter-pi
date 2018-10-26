@@ -47,39 +47,26 @@ module.exports = grammar({
         // expressions
         // expr: $ => $._expr,
         _expr: $ => choice(
-            $.expr_expr,
-            $.expr_mul,
-            $.expr_div,
-            $.expr_factor
+            prec(999, seq( '(', $._expr, ')')),
+            $.mul,
+            $.div,
+            $.add,
+            $.sub,
+            $._term
         ),
 
-        expr_expr: $ => prec(999, seq( '(', $._expr, ')')),
-        expr_mul: $ => seq($._factor, '*', $._factor),
-        expr_div: $ => seq($._factor, '/', $._factor),
-        expr_factor: $ => $._factor,
-
-        _factor: $ => choice(
-            $.factor_expr,
-            $.factor_add,
-            $.factor_minus,
-            $.factor_term
-        ),
-
-        factor_expr: $ => prec(998, seq( '(', $._expr, ')')),
-        factor_add: $ => seq($._term, '+', $._term),
-        factor_minus: $ => seq($._term, '-', $._term),
-        factor_term: $ => $._term,
-
+        // left associative
+        mul: $ => prec.left(801, seq($._expr, '*', $._expr)),
+        div: $ => prec.left(801, seq($._expr, '/', $._expr)),
+        add: $ => prec.left(800, seq($._expr, '+', $._expr)),
+        sub: $ => prec.left(800, seq($._expr, '-', $._expr)),
 
         _term: $ => choice(
-            $.term_expr,
-            $.term_digit,
+            prec(997, seq( '(', $._expr, ')')),
+            $.digit,
         ),
 
-        term_expr : $ => prec(997, seq( '(', $._expr, ')')),
-        term_digit: $ => $._digit,
-
-        _digit: $ => /\-?[0-9]+/,
+        digit: $ => /\-?[0-9]+/,
         name: $ => /[a-z](\w|')*/,
         boolean: $ => choice(
             token('True'),

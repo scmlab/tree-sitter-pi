@@ -199,201 +199,163 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "expr_expr"
+          "type": "PREC",
+          "value": 999,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_expr"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          }
         },
         {
           "type": "SYMBOL",
-          "name": "expr_mul"
+          "name": "mul"
         },
         {
           "type": "SYMBOL",
-          "name": "expr_div"
+          "name": "div"
         },
         {
           "type": "SYMBOL",
-          "name": "expr_factor"
+          "name": "add"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sub"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_term"
         }
       ]
     },
-    "expr_expr": {
-      "type": "PREC",
-      "value": 999,
+    "mul": {
+      "type": "PREC_LEFT",
+      "value": 801,
       "content": {
         "type": "SEQ",
         "members": [
-          {
-            "type": "STRING",
-            "value": "("
-          },
           {
             "type": "SYMBOL",
             "name": "_expr"
           },
           {
             "type": "STRING",
-            "value": ")"
+            "value": "*"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expr"
           }
         ]
       }
     },
-    "expr_mul": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_factor"
-        },
-        {
-          "type": "STRING",
-          "value": "*"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_factor"
-        }
-      ]
-    },
-    "expr_div": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_factor"
-        },
-        {
-          "type": "STRING",
-          "value": "/"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_factor"
-        }
-      ]
-    },
-    "expr_factor": {
-      "type": "SYMBOL",
-      "name": "_factor"
-    },
-    "_factor": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "factor_expr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "factor_add"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "factor_minus"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "factor_term"
-        }
-      ]
-    },
-    "factor_expr": {
-      "type": "PREC",
-      "value": 998,
+    "div": {
+      "type": "PREC_LEFT",
+      "value": 801,
       "content": {
         "type": "SEQ",
         "members": [
-          {
-            "type": "STRING",
-            "value": "("
-          },
           {
             "type": "SYMBOL",
             "name": "_expr"
           },
           {
             "type": "STRING",
-            "value": ")"
+            "value": "/"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expr"
           }
         ]
       }
     },
-    "factor_add": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_term"
-        },
-        {
-          "type": "STRING",
-          "value": "+"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_term"
-        }
-      ]
+    "add": {
+      "type": "PREC_LEFT",
+      "value": 800,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expr"
+          },
+          {
+            "type": "STRING",
+            "value": "+"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expr"
+          }
+        ]
+      }
     },
-    "factor_minus": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_term"
-        },
-        {
-          "type": "STRING",
-          "value": "-"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_term"
-        }
-      ]
-    },
-    "factor_term": {
-      "type": "SYMBOL",
-      "name": "_term"
+    "sub": {
+      "type": "PREC_LEFT",
+      "value": 800,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expr"
+          },
+          {
+            "type": "STRING",
+            "value": "-"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expr"
+          }
+        ]
+      }
     },
     "_term": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "term_expr"
+          "type": "PREC",
+          "value": 997,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_expr"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          }
         },
         {
           "type": "SYMBOL",
-          "name": "term_digit"
+          "name": "digit"
         }
       ]
     },
-    "term_expr": {
-      "type": "PREC",
-      "value": 997,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "("
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_expr"
-          },
-          {
-            "type": "STRING",
-            "value": ")"
-          }
-        ]
-      }
-    },
-    "term_digit": {
-      "type": "SYMBOL",
-      "name": "_digit"
-    },
-    "_digit": {
+    "digit": {
       "type": "PATTERN",
       "value": "\\-?[0-9]+"
     },
