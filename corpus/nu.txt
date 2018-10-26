@@ -38,3 +38,16 @@ name = ((nu x) (end))
     (proc_declaration (name)
         (nu (name)
             (end))))
+
+==================
+Call
+==================
+
+name = ((nu x) name)
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (nu (name)
+            (call (name)))))

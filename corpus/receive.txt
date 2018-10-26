@@ -25,6 +25,19 @@ name = (c?x . end)
             (end))))
 
 ==================
+Call
+==================
+
+name = c?x . name
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (recv (name) (name)
+            (call (name)))))
+
+==================
 New channel - 1
 ==================
 

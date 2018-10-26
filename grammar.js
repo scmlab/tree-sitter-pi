@@ -30,7 +30,8 @@ module.exports = grammar({
             $.send,
             $.par,
             $.nu,
-            $.end
+            $.end,
+            $.call
         ),
 
         // 5 types of processes
@@ -43,6 +44,8 @@ module.exports = grammar({
         send: $ => prec(8, seq($.name, '!',  $._expr, '.', $._proc)),
 
         end: $ => token('end'),
+
+        call: $ => seq($.name),
 
         // expressions
         // expr: $ => $._expr,

@@ -25,6 +25,19 @@ name = (c!3 . end)
             (end))))
 
 ==================
+Call
+==================
+
+name = c!3 . name
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (send (name) (digit)
+            (call (name)))))
+
+==================
 New channel - 1
 ==================
 

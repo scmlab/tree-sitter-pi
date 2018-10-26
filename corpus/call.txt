@@ -1,0 +1,11 @@
+==================
+Simple
+==================
+
+name = call
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (call (name))))

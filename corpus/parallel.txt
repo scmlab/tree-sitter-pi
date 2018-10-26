@@ -50,6 +50,21 @@ name = end | ((end | end) | end)
                 (end)))))
 
 ==================
+Call
+==================
+
+name = name | name
+
+---
+
+(source_file
+    (proc_declaration (name)
+        (par
+            (call (name))
+            (call (name)))))
+
+
+==================
 New channel - 1
 ==================
 

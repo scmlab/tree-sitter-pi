@@ -73,6 +73,10 @@
         {
           "type": "SYMBOL",
           "name": "end"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call"
         }
       ]
     },
@@ -194,6 +198,15 @@
         "type": "STRING",
         "value": "end"
       }
+    },
+    "call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "name"
+        }
+      ]
     },
     "_expr": {
       "type": "CHOICE",
