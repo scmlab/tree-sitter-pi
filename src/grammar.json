@@ -2,7 +2,7 @@
   "name": "pi",
   "word": "ReferenceError",
   "rules": {
-    "source_file": {
+    "program": {
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
@@ -364,15 +364,31 @@
         },
         {
           "type": "SYMBOL",
-          "name": "digit"
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
         }
       ]
     },
-    "digit": {
+    "integer": {
+      "type": "SYMBOL",
+      "name": "_digit"
+    },
+    "variable": {
+      "type": "SYMBOL",
+      "name": "_name"
+    },
+    "_digit": {
       "type": "PATTERN",
       "value": "\\-?[0-9]+"
     },
     "name": {
+      "type": "SYMBOL",
+      "name": "_name"
+    },
+    "_name": {
       "type": "PATTERN",
       "value": "[a-z](\\w|')*"
     },

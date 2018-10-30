@@ -48,7 +48,6 @@ module.exports = grammar({
         call: $ => seq($.name),
 
         // expressions
-        // expr: $ => $._expr,
         _expr: $ => choice(
             prec(999, seq( '(', $._expr, ')')),
             $.mul,
@@ -66,133 +65,21 @@ module.exports = grammar({
 
         _term: $ => choice(
             prec(997, seq( '(', $._expr, ')')),
-            $.digit,
+            $.integer,
+            $.variable
         ),
 
-        digit: $ => /\-?[0-9]+/,
-        name: $ => /[a-z](\w|')*/,
+        integer: $ => $._digit,
+        variable: $ => $._name,
+
+        _digit: $ => /\-?[0-9]+/,
+        name: $ => $._name,
+        _name: $ => /[a-z](\w|')*/,
         boolean: $ => choice(
             token('True'),
             token('False'),
         ),
-        // //
-        // term: $ => prec.right(sep1(seqSymbol, 15, $._atomic)),
-        // //
-        // _atomic: $ => choice(
-        //     $._parenthesized_term,
-        //     $.send,
-        //     $.recv,
-        //     $.nu,
-        //     $.name,
-        //     $.end
-        // ),
-        // _parenthesized_term: $ => seq( '(', alias($._term, $.term), ')'),
-        // -- -- -- -- --
-        // TERM-NU
-        // nu: $ => prec.left(seq(
-        //     'nu',
-        //     repeat1(alias($.name, $.nu_name)),
-        //     ':',
-        //     alias($._term, $.nu_body))),
-        //     // TERM-END
-        //     end: $ => token('end'),
-        //     // TERM-SEND
-        //     send: $ =>
-        //     prec.left(20, seq($._channel,'!',$._term_sendex)),
-        //     _channel: $ => choice($.name,$.cmd,),
-        //     _term_sendex: $ => choice(
-        //         $.label,
-        //         $._pattern,
-        //         $._expr
-        //     ),
-        //     _data_constructor: $ => choice(
-        //         $.string,
-        //         $.tuple
-        //     ),
-        //     // TERM-RECV
-        //     recv: $ =>
-        //     prec.left(20, seq($._channel,'?',$._term_recvex)),
-        //     _term_recvex: $ => choice(
-        //         $.label_guards,
-        //         $._pattern
-        //     ),
-        //     //
-        //     label_guards: $ =>
-        //     seq('{', sep1_(';', $.label_case), '}'),
-        //     //
-        //     label_case: $ =>
-        //     prec.right(50,seq(
-        //         $.label,
-        //         '->',
-        //         choice($.name,$._term)
-        //     )),
-        //     // -- -- -- -- --
-        //     _pattern: $ => choice(
-        //         $._data_constructor,
-        //         $.name,
-        //         $.digit
-        //     ),
-        //     // -- -- -- -- --
-        //     _expr: $ => choice(
-        //         $.expr,
-        //         $._parenthesized_expr
-        //     ),
-        //     expr: $ => prec.right(60,choice(
-        //         $.expr_condition,
-        //         $.expr_biop,
-        //         $.expr_unop,
-        //         $._pattern)
-        //     ),
-        //
-        //     //
-        //     expr_condition: $ => prec.right(70,seq(
-        //         'if',   $.expr,
-        //         'then', $.expr,
-        //         // choice($._term,$.expr),
-        //         'else', $.expr
-        //         // choice($._term,$.expr),
-        //     )),
-        //     expr_biop: $ => prec.left(70,seq(
-        //         $.expr, $.biop, $.expr
-        //     )),
-        //     expr_unop: $ => prec.left(70,seq(
-        //         $.unop, $.expr
-        //     )),
-        //     //
-        //     _parenthesized_expr: $ => seq(
-        //         '(', $.expr, ')'
-        //     ),
-        //
-        //
-        //
-        //     // ## ## ## ## ##
-        //     string: $ => token(seq(
-        //         '"',
-        //         repeat(
-        //             choice(
-        //                 /[^\\"\n]/,
-        //                 /\\(\^)?(.|\n)/
-        //             )
-        //         ),
-        //         '"'
-        //     )),
-        //     // -- -- -- -- --
-        //     tuple: $ => seq(
-        //         '<', $._pattern, ',',
-        //         sep1_(',', $._pattern),
-        //         '>'
-        //     ),
-        //     // ## ## ## ## ##
-        //     biop: $ => choice(
-        //         '+','-','*','/',
-        //         '>=','>','<=','<',
-        //         '==','!=',
-        //         '&&','||'
-        //     ),
-        //     unop: $ => choice(
-        //         '-','~'
-        //     ),
-        // ## ## ## ## ##
+
         label: $ => /[A-Z][A-Z0-9]*/,
         cmd: $ => /[A-Z](\w|')*/,
 

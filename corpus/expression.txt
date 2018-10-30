@@ -8,7 +8,7 @@ name = c!3 . end
 
 (program
     (proc_declaration (name)
-        (send (name) (digit)
+        (send (name) (integer)
             (end))))
 
 ==================
@@ -21,7 +21,7 @@ name = c!(3) . end
 
 (program
     (proc_declaration (name)
-        (send (name) (digit)
+        (send (name) (integer)
             (end))))
 
 ==================
@@ -34,7 +34,7 @@ name = c!3 * (4) . end
 
 (program
     (proc_declaration (name)
-        (send (name) (mul (digit) (digit))
+        (send (name) (mul (integer) (integer))
             (end))))
 
 ==================
@@ -47,7 +47,7 @@ name = c!1 * 2 * 3 . end
 
 (program
     (proc_declaration (name)
-        (send (name) (mul (mul (digit) (digit)) (digit))
+        (send (name) (mul (mul (integer) (integer)) (integer))
             (end))))
 
 ==================
@@ -61,7 +61,7 @@ name = c!(3 / (4)) / 2 . (end)
 
 (program
     (proc_declaration (name)
-        (send (name) (div (div (digit) (digit)) (digit))
+        (send (name) (div (div (integer) (integer)) (integer))
             (end))))
 ==================
 / - 2
@@ -73,7 +73,7 @@ name = c!(3 / (4 / 2)) . (end)
 
 (program
     (proc_declaration (name)
-        (send (name) (div (digit) (div (digit) (digit)))
+        (send (name) (div (integer) (div (integer) (integer)))
             (end))))
 
 
@@ -87,7 +87,7 @@ name = c!3 + 4 . end
 
 (program
     (proc_declaration (name)
-        (send (name) (add (digit) (digit))
+        (send (name) (add (integer) (integer))
             (end))))
 
 ==================
@@ -100,7 +100,7 @@ name = c!3 + 4 + 6 . end
 
 (program
     (proc_declaration (name)
-        (send (name) (add (add (digit) (digit)) (digit))
+        (send (name) (add (add (integer) (integer)) (integer))
             (end))))
 
 ==================
@@ -113,7 +113,7 @@ name = c!3 - (4) . end
 
 (program
     (proc_declaration (name)
-        (send (name) (sub (digit) (digit))
+        (send (name) (sub (integer) (integer))
             (end))))
 
 ==================
@@ -126,7 +126,7 @@ name = c!3 - (4) . end
 
 (program
     (proc_declaration (name)
-        (send (name) (sub (digit) (digit))
+        (send (name) (sub (integer) (integer))
             (end))))
 
 ==================
@@ -140,23 +140,25 @@ name = c!3 * ((4 * 3) + (2 - 3) / 2) . end
 (program
     (proc_declaration (name)
         (send (name) (mul
-                (digit)
+                (integer)
                 (add
-                    (mul (digit) (digit))
+                    (mul (integer) (integer))
                     (div
-                        (sub (digit) (digit))
-                        (digit))))
+                        (sub (integer) (integer))
+                        (integer))))
             (end))))
 
 ==================
-digit
+Variable
 ==================
 
-name = c!3 . end
+name = c?x . c!x + 4 * x . end
 
 ---
 
 (program
     (proc_declaration (name)
-        (send (name) (digit)
-            (end))))
+        (recv (name) (name)
+            (send (name)
+                (add (variable) (mul (integer) (variable)))
+            (end)))))

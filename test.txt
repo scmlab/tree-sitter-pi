@@ -50,11 +50,11 @@ pC = x!1+2-1 . x?res . Print!res .end
             (send (name)
                 (expr (expr_biop
                     (expr (expr_biop
-                        (expr (digit))
+                        (expr (integer))
                         (biop)
-                        (expr (digit))))
+                        (expr (integer))))
                     (biop)
-                    (expr (digit)))))
+                    (expr (integer)))))
             (recv (name) (name))
             (send (cmd) (expr (name))) (end))))
 
@@ -73,7 +73,7 @@ pD = nu i j : x!(if n >= 1 then i else j) . x?red .end
                 (term (send (name) (expr (expr_condition
                     (expr (expr_biop
                         (expr (name))
-                        (biop) (expr (digit))))
+                        (biop) (expr (integer))))
                     (expr (name))
                     (expr (name)))))
                 (recv (name) (name)) (end)))))))
