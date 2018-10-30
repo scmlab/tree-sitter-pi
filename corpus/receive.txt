@@ -7,7 +7,7 @@ name = c?x . end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (recv (name) (name)
             (end))))
 
@@ -20,7 +20,7 @@ name = (c?x . end)
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (recv (name) (name)
             (end))))
 
@@ -33,9 +33,9 @@ name = c?x . name
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (recv (name) (name)
-            (call (name)))))
+            (call (process_name)))))
 
 ==================
 New channel - 1
@@ -46,7 +46,7 @@ name = (nu x) c?x . end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
             (recv (name) (name)
                 (end)))))
@@ -60,7 +60,7 @@ name =  c?x . (nu x) end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (recv (name) (name)
             (nu (name)
                 (end)))))
@@ -74,7 +74,7 @@ name =  (nu x) end | end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (par
             (nu (name)
                 (end))
@@ -89,7 +89,7 @@ name =  (nu x) (end | end)
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
             (par
                 (end)

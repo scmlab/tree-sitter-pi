@@ -17,7 +17,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "name"
+            "name": "process_name"
           },
           {
             "type": "STRING",
@@ -79,6 +79,10 @@
           "name": "call"
         }
       ]
+    },
+    "process_name": {
+      "type": "SYMBOL",
+      "name": "_name"
     },
     "par": {
       "type": "PREC",
@@ -204,7 +208,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "name"
+          "name": "process_name"
         }
       ]
     },

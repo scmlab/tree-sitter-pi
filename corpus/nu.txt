@@ -7,7 +7,7 @@ name = (nu x) end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
             (end)
         )))
@@ -21,7 +21,7 @@ name = (nu x) (end)
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
             (end)
         )))
@@ -35,7 +35,7 @@ name = ((nu x) (end))
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
             (end))))
 
@@ -48,6 +48,6 @@ name = ((nu x) name)
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
-            (call (name)))))
+            (call (process_name)))))

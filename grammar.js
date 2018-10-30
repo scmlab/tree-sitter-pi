@@ -22,7 +22,7 @@ module.exports = grammar({
 
         program: $ => repeat($.proc_declaration),
 
-        proc_declaration: $ => prec(999, seq($.name, '=', $._proc)),
+        proc_declaration: $ => prec(999, seq($.process_name, '=', $._proc)),
 
         _proc: $ => choice(
             prec(999, seq( '(', $._proc, ')')),
@@ -33,6 +33,8 @@ module.exports = grammar({
             $.end,
             $.call
         ),
+
+        process_name: $ => $._name,
 
         // 5 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
@@ -45,7 +47,7 @@ module.exports = grammar({
 
         end: $ => token('end'),
 
-        call: $ => seq($.name),
+        call: $ => seq($.process_name),
 
         // expressions
         _expr: $ => choice(

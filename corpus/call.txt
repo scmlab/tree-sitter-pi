@@ -7,5 +7,5 @@ name = call
 ---
 
 (program
-    (proc_declaration (name)
-        (call (name))))
+    (proc_declaration (process_name)
+        (call (process_name))))

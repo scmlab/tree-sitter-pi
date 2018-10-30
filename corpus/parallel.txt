@@ -7,7 +7,7 @@ name = end | end | end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (par
             (end)
             (par
@@ -24,7 +24,7 @@ name = end | (end) | ((end))
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (par
             (end)
             (par
@@ -40,7 +40,7 @@ name = end | ((end | end) | end)
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (par
             (end)
             (par
@@ -58,10 +58,10 @@ name = name | name
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (par
-            (call (name))
-            (call (name)))))
+            (call (process_name))
+            (call (process_name)))))
 
 
 ==================
@@ -73,7 +73,7 @@ name = (nu x) end | end
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (par
             (nu (name)
                 (end))
@@ -88,7 +88,7 @@ name = (nu x) (end | end)
 ---
 
 (program
-    (proc_declaration (name)
+    (proc_declaration (process_name)
         (nu (name)
             (par
                 (end)
