@@ -34,16 +34,14 @@ module.exports = grammar({
             $.call
         ),
 
-        process_name: $ => $._name,
-
         // 5 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
 
-        nu: $ => prec(9, seq('(', 'nu',  $.name, ')', $._proc)),
+        nu: $ => prec(9, seq('(', 'nu',  $._name, ')', $._proc)),
 
-        recv: $ => prec(8, seq($.name, '?',  $.name, '.', $._proc)),
+        recv: $ => prec(8, seq($._name, '?',  $._name, '.', $._proc)),
 
-        send: $ => prec(8, seq($.name, '!',  $._expr, '.', $._proc)),
+        send: $ => prec(8, seq($._name, '!',  $._expr, '.', $._proc)),
 
         end: $ => token('end'),
 
@@ -74,14 +72,23 @@ module.exports = grammar({
         integer: $ => $._digit,
         variable: $ => $._name,
 
-        _digit: $ => /\-?[0-9]+/,
-        name: $ => $._name,
-        _name: $ => /[a-z](\w|')*/,
-        boolean: $ => choice(
-            token('True'),
-            token('False'),
-        ),
+        // names
+        process_name: $ => /[a-z](\w|')*/,
 
+        _name: $ => choice(
+            prec(999, $.reserved_name),
+            prec(998, $.name),
+        ),
+        reserved_name: $ => choice(
+            'stdin',
+            'stdout'
+        ),
+        name: $ => /[a-z](\w|')*/,
+
+
+
+
+        _digit: $ => /\-?[0-9]+/,
         label: $ => /[A-Z][A-Z0-9]*/,
         cmd: $ => /[A-Z](\w|')*/,
 

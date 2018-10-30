@@ -160,5 +160,20 @@ name = c?x . c!x + 4 * x . end
     (proc_declaration (process_name)
         (recv (name) (name)
             (send (name)
-                (add (variable) (mul (integer) (variable)))
+                (add (variable (name)) (mul (integer) (variable (name))))
+            (end)))))
+
+==================
+Reserved Names
+==================
+
+name = stdin?x . stdout!x + 4 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (recv (reserved_name) (name)
+            (send (reserved_name)
+                (add (variable (name)) (integer))
             (end)))))
