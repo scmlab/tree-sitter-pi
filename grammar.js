@@ -48,12 +48,10 @@ module.exports = grammar({
         call: $ => seq($.process_name),
 
         // clauses of recv
-
         _clauses: $ => choice(
             alias($.simple_clause, $.clause),
             $._complex_clauses
         ),
-
         simple_clause: $ => prec(8, seq($.pattern, '.', $._proc)),
         _complex_clauses: $ => seq('{', sep1(';', alias($.complex_clause, $.clause)), '}'),
         complex_clause: $ => seq($.pattern, '->', $._proc),
@@ -84,7 +82,8 @@ module.exports = grammar({
         _term: $ => choice(
             prec(997, seq( '(', $._expr, ')')),
             $.integer,
-            $.variable
+            $.variable,
+            $.label
         ),
 
         integer: $ => $._digit,

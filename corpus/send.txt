@@ -1,5 +1,5 @@
 ==================
-Simple
+Simple - integer
 ==================
 
 name = c!3 . end
@@ -9,6 +9,32 @@ name = c!3 . end
 (program
     (proc_declaration (process_name)
         (send (name) (integer)
+            (end))))
+
+==================
+Simple - name
+==================
+
+name = c!d . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (variable (name))
+            (end))))
+
+==================
+Simple - label
+==================
+
+name = c!HAHA . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (label)
             (end))))
 
 ==================
