@@ -12,6 +12,55 @@ name = c?x . end
             (end))))
 
 ==================
+Complex - 1
+==================
+
+name = c?{ A -> end }
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (recv (name) (pattern (label))
+            (end))))
+
+==================
+Complex - 2
+==================
+
+name = c?{ A -> end
+         ; B -> end
+         }
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (recv (name)
+            (pattern (label)) (end)
+            (pattern (label)) (end))))
+
+==================
+Complex - 3
+==================
+
+name = c?{ A -> c?{ A -> end
+                  ; B -> end
+                  }
+         ; B -> end
+         }
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (recv (name)
+            (pattern (label)) (recv (name)
+                    (pattern (label)) (end)
+                    (pattern (label)) (end))
+            (pattern (label)) (end))))
+
+==================
 Parenthesized
 ==================
 

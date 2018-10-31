@@ -39,14 +39,13 @@ module.exports = grammar({
 
         nu: $ => prec(9, seq('(', 'nu',  $._name, ')', $._proc)),
 
-        recv: $ => choice($._simple_recv),
-        _simple_recv : $ => prec(8, seq($._name, '?',  $.pattern, '.', $._proc)),
-        // _complex_recv : $ => prec(8, seq(
-        //     '{',
-        //
-        //     '}'
-        //     $.pattern, '?',  $._name, '.', $._proc
-        // )),
+        recv: $ => seq($._name, '?', choice(
+            $._simple_recv,
+            $._complex_recv
+        )),
+        _simple_recv: $ => prec(8, seq($.pattern, '.', $._proc)),
+        _complex_recv: $ => seq('{', sep1(';', $._complex_recv_pairs), '}'),
+        _complex_recv_pairs: $ => seq($.pattern, '->', $._proc),
 
         send: $ => prec(8, seq($._name, '!',  $._expr, '.', $._proc)),
 
@@ -113,14 +112,14 @@ module.exports = grammar({
         }
     })
 
-    function sep0_(sep, rule) {
+    function sep1(sep, rule) {
         return seq(rule, repeat(seq(sep, rule)))
     }
 
-    function sep0(sep, num, rule) {
-        return seq(rule, repeat(prec(num,seq(sep, rule))))
-    }
-
-    function sep1(sep, num, rule) {
-        return seq(rule, sep, rule, repeat(prec(num,seq(sep, rule))))
-    }
+    // function sep0(sep, num, rule) {
+    //     return seq(rule, repeat(prec(num,seq(sep, rule))))
+    // }
+    //
+    // function sep1(sep, num, rule) {
+    //     return seq(rule, sep, rule, repeat(prec(num,seq(sep, rule))))
+    // }

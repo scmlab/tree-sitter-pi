@@ -135,11 +135,28 @@
       }
     },
     "recv": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_simple_recv"
+          "name": "_name"
+        },
+        {
+          "type": "STRING",
+          "value": "?"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_simple_recv"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_complex_recv"
+            }
+          ]
         }
       ]
     },
@@ -149,14 +166,6 @@
       "content": {
         "type": "SEQ",
         "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_name"
-          },
-          {
-            "type": "STRING",
-            "value": "?"
-          },
           {
             "type": "SYMBOL",
             "name": "pattern"
@@ -171,6 +180,61 @@
           }
         ]
       }
+    },
+    "_complex_recv": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_complex_recv_pairs"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_complex_recv_pairs"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "_complex_recv_pairs": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "pattern"
+        },
+        {
+          "type": "STRING",
+          "value": "->"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_proc"
+        }
+      ]
     },
     "send": {
       "type": "PREC",
