@@ -109,7 +109,7 @@ name =  x!3 . end | x?y . end
         (par
             (send (name) (integer)
                 (end))
-            (recv (name) (name)
+            (recv (name) (pattern (name))
                 (end)))))
 
 ==================
@@ -123,5 +123,5 @@ name =  x!3 . x?y . end
 (program
     (proc_declaration (process_name)
         (send (name) (integer)
-            (recv (name) (name)
+            (recv (name) (pattern (name))
                 (end)))))

@@ -34,18 +34,31 @@ module.exports = grammar({
             $.call
         ),
 
-        // 5 types of processes
+        // 6 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
 
         nu: $ => prec(9, seq('(', 'nu',  $._name, ')', $._proc)),
 
-        recv: $ => prec(8, seq($._name, '?',  $._name, '.', $._proc)),
+        recv: $ => choice($._simple_recv),
+        _simple_recv : $ => prec(8, seq($._name, '?',  $.pattern, '.', $._proc)),
+        // _complex_recv : $ => prec(8, seq(
+        //     '{',
+        //
+        //     '}'
+        //     $.pattern, '?',  $._name, '.', $._proc
+        // )),
 
         send: $ => prec(8, seq($._name, '!',  $._expr, '.', $._proc)),
 
         end: $ => token('end'),
 
         call: $ => seq($.process_name),
+
+        // patterns that appear the in LHS
+        pattern: $ => choice(
+            $._name,
+            $.label
+        ),
 
         // expressions
         _expr: $ => choice(
@@ -74,7 +87,6 @@ module.exports = grammar({
 
         // names
         process_name: $ => /[a-z](\w|')*/,
-
         _name: $ => choice(
             prec(999, $.reserved_name),
             prec(998, $.name),
@@ -86,10 +98,12 @@ module.exports = grammar({
         name: $ => /[a-z](\w|')*/,
 
 
+        // label
+        label: $ => /[A-Z][A-Z0-9]*/,
+
 
 
         _digit: $ => /\-?[0-9]+/,
-        label: $ => /[A-Z][A-Z0-9]*/,
         cmd: $ => /[A-Z](\w|')*/,
 
         comment: $ => token(choice(

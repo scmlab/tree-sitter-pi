@@ -135,6 +135,15 @@
       }
     },
     "recv": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_simple_recv"
+        }
+      ]
+    },
+    "_simple_recv": {
       "type": "PREC",
       "value": 8,
       "content": {
@@ -150,7 +159,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_name"
+            "name": "pattern"
           },
           {
             "type": "STRING",
@@ -205,6 +214,19 @@
         {
           "type": "SYMBOL",
           "name": "process_name"
+        }
+      ]
+    },
+    "pattern": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "label"
         }
       ]
     },
@@ -422,32 +444,13 @@
       "type": "PATTERN",
       "value": "[a-z](\\w|')*"
     },
-    "_digit": {
-      "type": "PATTERN",
-      "value": "\\-?[0-9]+"
-    },
-    "boolean": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "True"
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "False"
-          }
-        }
-      ]
-    },
     "label": {
       "type": "PATTERN",
       "value": "[A-Z][A-Z0-9]*"
+    },
+    "_digit": {
+      "type": "PATTERN",
+      "value": "\\-?[0-9]+"
     },
     "cmd": {
       "type": "PATTERN",

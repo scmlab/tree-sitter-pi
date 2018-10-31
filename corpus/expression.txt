@@ -158,7 +158,7 @@ name = c?x . c!x + 4 * x . end
 
 (program
     (proc_declaration (process_name)
-        (recv (name) (name)
+        (recv (name) (pattern (name))
             (send (name)
                 (add (variable (name)) (mul (integer) (variable (name))))
             (end)))))
@@ -173,7 +173,7 @@ name = stdin?x . stdout!x + 4 . end
 
 (program
     (proc_declaration (process_name)
-        (recv (reserved_name) (name)
+        (recv (reserved_name) (pattern (name))
             (send (reserved_name)
                 (add (variable (name)) (integer))
             (end)))))

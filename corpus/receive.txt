@@ -8,7 +8,7 @@ name = c?x . end
 
 (program
     (proc_declaration (process_name)
-        (recv (name) (name)
+        (recv (name) (pattern (name))
             (end))))
 
 ==================
@@ -21,7 +21,7 @@ name = (c?x . end)
 
 (program
     (proc_declaration (process_name)
-        (recv (name) (name)
+        (recv (name) (pattern (name))
             (end))))
 
 ==================
@@ -34,7 +34,7 @@ name = c?x . name
 
 (program
     (proc_declaration (process_name)
-        (recv (name) (name)
+        (recv (name) (pattern (name))
             (call (process_name)))))
 
 ==================
@@ -48,7 +48,7 @@ name = (nu x) c?x . end
 (program
     (proc_declaration (process_name)
         (nu (name)
-            (recv (name) (name)
+            (recv (name) (pattern (name))
                 (end)))))
 
 ==================
@@ -61,7 +61,7 @@ name =  c?x . (nu x) end
 
 (program
     (proc_declaration (process_name)
-        (recv (name) (name)
+        (recv (name) (pattern (name))
             (nu (name)
                 (end)))))
 
