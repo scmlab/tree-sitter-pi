@@ -39,19 +39,25 @@ module.exports = grammar({
 
         nu: $ => prec(9, seq('(', 'nu',  $._name, ')', $._proc)),
 
-        recv: $ => seq($._name, '?', choice(
-            $._simple_recv,
-            $._complex_recv
-        )),
-        _simple_recv: $ => prec(8, seq($.pattern, '.', $._proc)),
-        _complex_recv: $ => seq('{', sep1(';', $._complex_recv_pairs), '}'),
-        _complex_recv_pairs: $ => seq($.pattern, '->', $._proc),
+        recv: $ => seq($._name, '?', $._clauses),
 
         send: $ => prec(8, seq($._name, '!',  $._expr, '.', $._proc)),
 
         end: $ => token('end'),
 
         call: $ => seq($.process_name),
+
+        // clauses of recv
+
+        _clauses: $ => choice(
+            alias($.simple_clause, $.clause),
+            $._complex_clauses
+        ),
+
+        simple_clause: $ => prec(8, seq($.pattern, '.', $._proc)),
+        _complex_clauses: $ => seq('{', sep1(';', alias($.complex_clause, $.clause)), '}'),
+        complex_clause: $ => seq($.pattern, '->', $._proc),
+
 
         // patterns that appear the in LHS
         pattern: $ => choice(

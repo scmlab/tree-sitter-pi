@@ -158,10 +158,11 @@ name = c?x . c!x + 4 * x . end
 
 (program
     (proc_declaration (process_name)
-        (recv (name) (pattern (name))
-            (send (name)
-                (add (variable (name)) (mul (integer) (variable (name))))
-            (end)))))
+        (recv (name)
+            (clause (pattern (name))
+                (send (name)
+                    (add (variable (name)) (mul (integer) (variable (name))))
+                (end))))))
 
 ==================
 Reserved Names
@@ -173,7 +174,8 @@ name = stdin?x . stdout!x + 4 . end
 
 (program
     (proc_declaration (process_name)
-        (recv (reserved_name) (pattern (name))
-            (send (reserved_name)
-                (add (variable (name)) (integer))
-            (end)))))
+        (recv (reserved_name)
+            (clause (pattern (name))
+                (send (reserved_name)
+                    (add (variable (name)) (integer))
+                (end))))))
