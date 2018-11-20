@@ -7,7 +7,7 @@ name = end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq (end)))))
 
@@ -20,7 +20,7 @@ name = (end)
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq (end)))))
 
@@ -33,7 +33,7 @@ name = end | end | end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq (end))
             (seq (end))
@@ -48,7 +48,7 @@ name = end | (end) | ((end))
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq (end))
             (seq (end))
@@ -63,7 +63,7 @@ name = end | ((end | end) | end)
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq (end))
             (seq (end))
@@ -79,7 +79,7 @@ name = end . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq (end) (end)))))
 
@@ -92,7 +92,7 @@ name = end . ((end) . (end . end)) . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq
                 (end)
@@ -110,7 +110,7 @@ name = end . end | end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq
                 (end)
@@ -128,7 +128,7 @@ name = end . (end | end)
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq
                 (end)
@@ -145,7 +145,7 @@ name = end . (end | end) | end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (seq
                 (end)

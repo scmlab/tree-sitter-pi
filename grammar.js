@@ -22,7 +22,7 @@ module.exports = grammar({
 
         program: $ => repeat($.proc_declaration),
 
-        proc_declaration: $ => prec(999, seq($.process_name, '=', $._proc)),
+        proc_declaration: $ => prec(999, seq($.simple_name, '=', $._proc)),
 
         _proc: $ => choice(
             prec(999, seq( '(', $._proc, ')')),
@@ -37,7 +37,7 @@ module.exports = grammar({
         // 6 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
 
-        nu: $ => prec(9, seq('(', 'nu',  $._name, ')', $._proc)),
+        nu: $ => prec(9, seq('(', 'nu',  $.simple_name, ')', $._proc)),
 
         recv: $ => seq($._name, '?', $._clauses),
 
@@ -45,7 +45,7 @@ module.exports = grammar({
 
         end: $ => token('end'),
 
-        call: $ => seq($.process_name),
+        call: $ => seq($.simple_name),
 
         // clauses of recv
         _clauses: $ => choice(
@@ -59,7 +59,7 @@ module.exports = grammar({
 
         // patterns that appear the in LHS
         pattern: $ => choice(
-            $._name,
+            $.simple_name,
             $.label
         ),
 
@@ -90,7 +90,7 @@ module.exports = grammar({
         variable: $ => $._name,
 
         // names
-        process_name: $ => /[a-z](\w|')*/,
+        simple_name: $ => /[a-z](\w|')*/,
         _name: $ => choice(
             prec(999, $.reserved_name),
             prec(998, $.name),

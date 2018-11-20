@@ -7,9 +7,9 @@ name = c?x . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
-            (clause (pattern (name)) (end)))))
+            (clause (pattern (simple_name)) (end)))))
 
 ==================
 Complex - 1
@@ -20,7 +20,7 @@ name = c?{ A -> end }
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
             (clause (pattern (label)) (end)))))
 
@@ -35,7 +35,7 @@ name = c?{ A -> end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
             (clause (pattern (label)) (end))
             (clause (pattern (label)) (end)))))
@@ -53,7 +53,7 @@ name = c?{ A -> c?{ A -> end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
             (clause (pattern (label)) (recv (name)
                     (clause (pattern (label)) (end))
@@ -69,9 +69,9 @@ name = (c?x . end)
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
-            (clause (pattern (name)) (end)))))
+            (clause (pattern (simple_name)) (end)))))
 
 ==================
 Call
@@ -82,9 +82,9 @@ name = c?x . name
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
-            (clause (pattern (name)) (call (process_name))))))
+            (clause (pattern (simple_name)) (call (simple_name))))))
 
 ==================
 New channel - 1
@@ -95,10 +95,10 @@ name = (nu x) c?x . end
 ---
 
 (program
-    (proc_declaration (process_name)
-        (nu (name)
+    (proc_declaration (simple_name)
+        (nu (simple_name)
             (recv (name)
-                (clause (pattern (name)) (end))))))
+                (clause (pattern (simple_name)) (end))))))
 
 ==================
 New channel - 2
@@ -109,9 +109,9 @@ name =  c?x . (nu x) end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (recv (name)
-            (clause (pattern (name)) (nu (name) (end))))))
+            (clause (pattern (simple_name)) (nu (simple_name) (end))))))
 
 ==================
 Parellel - 1
@@ -122,9 +122,9 @@ name =  (nu x) end | end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
-            (nu (name)
+            (nu (simple_name)
                 (end))
             (end))))
 
@@ -137,8 +137,8 @@ name =  (nu x) (end | end)
 ---
 
 (program
-    (proc_declaration (process_name)
-        (nu (name)
+    (proc_declaration (simple_name)
+        (nu (simple_name)
             (par
                 (end)
                 (end)))))

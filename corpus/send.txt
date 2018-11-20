@@ -7,7 +7,7 @@ name = c!3 . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (integer)
             (end))))
 
@@ -20,7 +20,7 @@ name = c!d . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (variable (name))
             (end))))
 
@@ -33,7 +33,7 @@ name = c!HAHA . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (label)
             (end))))
 
@@ -46,7 +46,7 @@ name = (c!3 . end)
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (integer)
             (end))))
 
@@ -59,9 +59,9 @@ name = c!3 . name
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (integer)
-            (call (process_name)))))
+            (call (simple_name)))))
 
 ==================
 New channel - 1
@@ -72,8 +72,8 @@ name = (nu x) c!3 . end
 ---
 
 (program
-    (proc_declaration (process_name)
-        (nu (name)
+    (proc_declaration (simple_name)
+        (nu (simple_name)
             (send (name) (integer)
                 (end)))))
 
@@ -86,9 +86,9 @@ name =  c!3 . (nu x) end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (integer)
-            (nu (name)
+            (nu (simple_name)
                 (end)))))
 
 ==================
@@ -100,7 +100,7 @@ name =  x!3 . end | end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (send (name) (integer)
                 (end))
@@ -115,7 +115,7 @@ name = x!3 . end | x!4 . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (send (name) (integer)
                 (end))
@@ -131,12 +131,12 @@ name =  x!3 . end | x?y . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (par
             (send (name) (integer)
                 (end))
             (recv (name)
-                (clause (pattern (name)) (end))))))
+                (clause (pattern (simple_name)) (end))))))
 
 ==================
 Receive - 2
@@ -147,7 +147,7 @@ name =  x!3 . x?y . end
 ---
 
 (program
-    (proc_declaration (process_name)
+    (proc_declaration (simple_name)
         (send (name) (integer)
             (recv (name)
-                (clause (pattern (name)) (end))))))
+                (clause (pattern (simple_name)) (end))))))

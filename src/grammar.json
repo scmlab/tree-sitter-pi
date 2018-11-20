@@ -17,7 +17,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "process_name"
+            "name": "simple_name"
           },
           {
             "type": "STRING",
@@ -121,7 +121,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_name"
+            "name": "simple_name"
           },
           {
             "type": "STRING",
@@ -192,7 +192,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "process_name"
+          "name": "simple_name"
         }
       ]
     },
@@ -305,7 +305,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_name"
+          "name": "simple_name"
         },
         {
           "type": "SYMBOL",
@@ -489,7 +489,7 @@
       "type": "SYMBOL",
       "name": "_name"
     },
-    "process_name": {
+    "simple_name": {
       "type": "PATTERN",
       "value": "[a-z](\\w|')*"
     },
