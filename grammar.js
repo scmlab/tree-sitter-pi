@@ -22,7 +22,7 @@ module.exports = grammar({
 
         program: $ => repeat($.proc_declaration),
 
-        proc_declaration: $ => prec(999, seq($.process_name, '=', $._proc)),
+        proc_declaration: $ => prec(999, seq(alias($.simple_name, $.process_name), '=', $._proc)),
 
         _proc: $ => choice(
             prec(999, seq( '(', $._proc, ')')),
@@ -37,7 +37,7 @@ module.exports = grammar({
         // 6 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
 
-        nu: $ => prec(9, seq('(', 'nu',  $.name, optional(seq(':', $._type)), ')', $._proc)),
+        nu: $ => prec(9, seq('(', 'nu', alias($.simple_name, $.name), optional(seq(':', $._type)), ')', $._proc)),
 
         recv: $ => seq($._name, '?', $._clauses),
 
@@ -45,7 +45,7 @@ module.exports = grammar({
 
         end: $ => token('end'),
 
-        call: $ => seq($.process_name),
+        call: $ => alias($.simple_name, $.process_name),
 
         // clauses of recv
         _clauses: $ => choice(
@@ -59,7 +59,7 @@ module.exports = grammar({
 
         // patterns that appear the in LHS
         pattern: $ => choice(
-            $.name,
+            alias($.simple_name, $.name),
             alias($.pattern_tuple, $.tuple),
             $.label
         ),
@@ -116,30 +116,27 @@ module.exports = grammar({
         type_select: $ => seq('!', '{', sep1(';', $._type_of_label), '}'),
         type_choice: $ => seq('?', '{', sep1(';', $._type_of_label), '}'),
         type_end: $ => token('end'),
-        type_call: $ => $.process_name,
+        type_call: $ => alias($.simple_name, $.process_name),
 
         _type_of_label: $ => seq($.label, ':', $._type),
 
         // names
-        process_name: $ => /[a-z](\w|')*/,
         _name: $ => choice(
             prec(999, $.reserved_name),
-            prec(998, $.name),
+            prec(998, alias($.polarized_name, $.name)),
         ),
         reserved_name: $ => choice(
             'stdin',
             'stdout'
         ),
-        name: $ => /[a-z](\w|')*/,
 
+        polarized_name: $ => choice(/\`[a-z](\w|')*/, /[a-z](\w|')*/),
+        simple_name: $ => /[a-z](\w|')*/,
 
         // label
         label: $ => /[A-Z][A-Z0-9]*/,
 
-
-
         _digit: $ => /\-?[0-9]+/,
-        cmd: $ => /[A-Z](\w|')*/,
 
         comment: $ => token(choice(
             prec(100, seq('--', /.*/)),

@@ -16,8 +16,13 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "process_name"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "simple_name"
+            },
+            "named": true,
+            "value": "process_name"
           },
           {
             "type": "STRING",
@@ -120,8 +125,13 @@
             "value": "nu"
           },
           {
-            "type": "SYMBOL",
-            "name": "name"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "simple_name"
+            },
+            "named": true,
+            "value": "name"
           },
           {
             "type": "CHOICE",
@@ -209,13 +219,13 @@
       }
     },
     "call": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "process_name"
-        }
-      ]
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "simple_name"
+      },
+      "named": true,
+      "value": "process_name"
     },
     "_clauses": {
       "type": "CHOICE",
@@ -325,8 +335,13 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "simple_name"
+          },
+          "named": true,
+          "value": "name"
         },
         {
           "type": "ALIAS",
@@ -826,8 +841,13 @@
       }
     },
     "type_call": {
-      "type": "SYMBOL",
-      "name": "process_name"
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "simple_name"
+      },
+      "named": true,
+      "value": "process_name"
     },
     "_type_of_label": {
       "type": "SEQ",
@@ -846,10 +866,6 @@
         }
       ]
     },
-    "process_name": {
-      "type": "PATTERN",
-      "value": "[a-z](\\w|')*"
-    },
     "_name": {
       "type": "CHOICE",
       "members": [
@@ -865,8 +881,13 @@
           "type": "PREC",
           "value": 998,
           "content": {
-            "type": "SYMBOL",
-            "name": "name"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "polarized_name"
+            },
+            "named": true,
+            "value": "name"
           }
         }
       ]
@@ -884,7 +905,20 @@
         }
       ]
     },
-    "name": {
+    "polarized_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\`[a-z](\\w|')*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-z](\\w|')*"
+        }
+      ]
+    },
+    "simple_name": {
       "type": "PATTERN",
       "value": "[a-z](\\w|')*"
     },
@@ -895,10 +929,6 @@
     "_digit": {
       "type": "PATTERN",
       "value": "\\-?[0-9]+"
-    },
-    "cmd": {
-      "type": "PATTERN",
-      "value": "[A-Z](\\w|')*"
     },
     "comment": {
       "type": "TOKEN",
