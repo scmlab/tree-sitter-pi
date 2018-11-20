@@ -179,3 +179,57 @@ name = stdin?x . stdout!x + 4 . end
                 (send (reserved_name)
                     (add (variable (name)) (integer))
                 (end))))))
+
+==================
+Tuple - 1
+==================
+
+name = stdin?x . stdout!<x, x + 4> . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (recv (reserved_name)
+            (clause (pattern (name))
+                (send (reserved_name)
+                    (tuple (variable (name)) (add (variable (name)) (integer)))
+                (end))))))
+
+==================
+Tuple - 2
+==================
+
+name = stdout!(<x, (x + 4), <x>>) . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (reserved_name)
+            (tuple
+                (variable (name))
+                (add (variable (name)) (integer))
+                (tuple
+                    (variable (name))))
+        (end))))
+
+==================
+Tuple - 3
+==================
+
+name = x?<x, y> . stdout!<x, y> . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (recv (name)
+            (clause (pattern (tuple
+                                (pattern (name))
+                                (pattern (name))))
+                (send (reserved_name)
+                    (tuple
+                        (variable (name))
+                        (variable (name)))
+                (end))))))

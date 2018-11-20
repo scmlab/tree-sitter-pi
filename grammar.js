@@ -60,18 +60,23 @@ module.exports = grammar({
         // patterns that appear the in LHS
         pattern: $ => choice(
             $.name,
+            alias($.pattern_tuple, $.tuple),
             $.label
         ),
+        pattern_tuple: $ => seq( '<', sep1(',', $.pattern), '>'),
 
         // expressions
         _expr: $ => choice(
             prec(999, seq( '(', $._expr, ')')),
+            $.tuple,
             $.mul,
             $.div,
             $.add,
             $.sub,
             $._term
         ),
+
+        tuple: $ => prec(999, seq( '<', sep1(',', $._expr), '>')),
 
         // left associative
         mul: $ => prec.left(801, seq($._expr, '*', $._expr)),
