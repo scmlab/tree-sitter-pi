@@ -7,7 +7,7 @@ name = end
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (end)))
 
 ==================
@@ -29,7 +29,7 @@ name = end
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (end))
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (end)))

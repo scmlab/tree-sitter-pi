@@ -7,8 +7,8 @@ name = (nu x : end) end
 ---
 
 (program
-    (proc_declaration (simple_name)
-        (nu (simple_name) (type_end)
+    (proc_declaration (process_name)
+        (nu (name) (type_end)
             (end)
         )))
 
@@ -21,8 +21,8 @@ name = (nu x : y) end
 ---
 
 (program
-    (proc_declaration (simple_name)
-        (nu (simple_name) (type_call (simple_name))
+    (proc_declaration (process_name)
+        (nu (name) (type_call (process_name))
             (end)
         )))
 
@@ -36,8 +36,8 @@ name = (nu x : !Int . end) end
 ---
 
 (program
-(proc_declaration (simple_name)
-(nu (simple_name) (type_send (sort_int) (type_end))
+(proc_declaration (process_name)
+(nu (name) (type_send (sort_int) (type_end))
     (end)
 )))
 
@@ -50,8 +50,8 @@ name = (nu x : ?Bool . !Int . end) end
 ---
 
 (program
-(proc_declaration (simple_name)
-(nu (simple_name) (type_recv (sort_bool) (type_send (sort_int) (type_end)))
+(proc_declaration (process_name)
+(nu (name) (type_recv (sort_bool) (type_send (sort_int) (type_end)))
     (end)
 )))
 
@@ -67,8 +67,8 @@ name = (nu x : !{  A : ?Int . end
 ---
 
 (program
-(proc_declaration (simple_name)
-(nu (simple_name) (type_select
+(proc_declaration (process_name)
+(nu (name) (type_select
         (label) (type_recv (sort_int) (type_end))
         (label) (type_send (sort_int) (type_end))
         )
@@ -86,8 +86,8 @@ name = (nu x : ?{  A : ?Int . end
 ---
 
 (program
-(proc_declaration (simple_name)
-(nu (simple_name) (type_choice
+(proc_declaration (process_name)
+(nu (name) (type_choice
         (label) (type_recv (sort_int) (type_end))
         (label) (type_send (sort_int) (type_end))
         )

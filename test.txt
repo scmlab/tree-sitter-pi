@@ -7,7 +7,7 @@ pA = x!a . end | (x!b | x!c) . x?a . end
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (term
             (send (name) (expr (name)))
             (end))
@@ -27,7 +27,7 @@ pB = x?y . (nu i j k : y!a ) . end
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (term
             (recv (name) (name))
             (term (term
@@ -45,7 +45,7 @@ pC = x!1+2-1 . x?res . Print!res .end
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (term
             (send (name)
                 (expr (expr_biop
@@ -67,7 +67,7 @@ pD = nu i j : x!(if n >= 1 then i else j) . x?red .end
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (term (nu (nu_name) (nu_name)
             (nu_body
                 (term (send (name) (expr (expr_condition
@@ -87,5 +87,5 @@ pE = x!
 ---
 
 (program
-    (proc_declaration (simple_name)
+    (proc_declaration (process_name)
         (term (send (name) (expr)))))

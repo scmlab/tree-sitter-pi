@@ -17,7 +17,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "simple_name"
+            "name": "process_name"
           },
           {
             "type": "STRING",
@@ -121,7 +121,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "simple_name"
+            "name": "name"
           },
           {
             "type": "CHOICE",
@@ -213,7 +213,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "simple_name"
+          "name": "process_name"
         }
       ]
     },
@@ -326,7 +326,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "simple_name"
+          "name": "name"
         },
         {
           "type": "SYMBOL",
@@ -734,7 +734,7 @@
     },
     "type_call": {
       "type": "SYMBOL",
-      "name": "simple_name"
+      "name": "process_name"
     },
     "_type_of_label": {
       "type": "SEQ",
@@ -753,7 +753,7 @@
         }
       ]
     },
-    "simple_name": {
+    "process_name": {
       "type": "PATTERN",
       "value": "[a-z](\\w|')*"
     },
