@@ -37,7 +37,7 @@ module.exports = grammar({
         // 6 types of processes
         par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
 
-        nu: $ => prec(9, seq('(', 'nu',  $.simple_name, ')', $._proc)),
+        nu: $ => prec(9, seq('(', 'nu',  $.simple_name, optional(seq(':', $._type)), ')', $._proc)),
 
         recv: $ => seq($._name, '?', $._clauses),
 
@@ -88,6 +88,32 @@ module.exports = grammar({
 
         integer: $ => $._digit,
         variable: $ => $._name,
+
+        // sorts & types
+        _sort: $ => choice(
+            $.sort_int,
+            $.sort_bool
+        ),
+        sort_int: $ => 'Int',
+        sort_bool: $ => 'Bool',
+
+        _type: $ => choice(
+            prec(999, seq( '(', $._type, ')')),
+            $.type_send,
+            $.type_recv,
+            $.type_select,
+            $.type_choice,
+            $.type_end,
+            $.type_call
+        ),
+        type_send: $ => seq('!', choice($._sort, $._type), '.', $._type),
+        type_recv: $ => seq('?', choice($._sort, $._type), '.', $._type),
+        type_select: $ => seq('!', '{', sep1(';', $._type_of_label), '}'),
+        type_choice: $ => seq('?', '{', sep1(';', $._type_of_label), '}'),
+        type_end: $ => token('end'),
+        type_call: $ => $.simple_name,
+
+        _type_of_label: $ => seq($.label, ':', $._type),
 
         // names
         simple_name: $ => /[a-z](\w|')*/,
