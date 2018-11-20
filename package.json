@@ -4,15 +4,24 @@
   "description": "pi calculus",
   "main": "index.js",
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
+    "build": "npx tree-sitter generate && node-gyp build",
+    "install": "prebuild-install || node-gyp rebuild",
+    "prebuild": "prebuild --all --strip --verbose",
+    "prebuild:upload": "prebuild --upload-all",
     "test": "npx tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scmlab/tree-sitter-pi.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.11.1"
+    "nan": "^2.11.1",
+    "prebuild-install": "^5.2.1"
   },
   "devDependencies": {
+    "prebuild": "^8.1.2",
     "tree-sitter-cli": "^0.13.10"
   }
 }
