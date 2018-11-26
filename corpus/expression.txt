@@ -232,3 +232,94 @@ name = x?(x, y) . stdout!(x, y) . end
                         (variable (name))
                         (variable (name)))
                 (end))))))
+
+==================
+Boolean
+==================
+
+name = c!True . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (boolean)
+            (end))))
+
+==================
+Comparison - 1
+==================
+
+name = c!3 == 3 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (eq (integer) (integer))
+            (end))))
+
+==================
+Comparison - 2
+==================
+
+name = c!3 != 3 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (neq (integer) (integer))
+            (end))))
+
+==================
+Comparison - 3
+==================
+
+name = c!3 == 3 + 1 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (eq (integer) (add (integer) (integer)))
+            (end))))
+
+==================
+Comparison - 4
+==================
+
+name = c!(3 == 3) + 1 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (add (eq (integer) (integer)) (integer))
+            (end))))
+
+==================
+Comparison - 5
+==================
+
+name = c!1 > 3 + 3 <= 3 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (lte (gt (integer) (add (integer) (integer))) (integer))
+            (end))))
+
+==================
+If then else
+==================
+
+name = c!if True then 3 else 4 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (if_then_else (boolean) (integer) (integer))
+            (end))))
