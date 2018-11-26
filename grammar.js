@@ -63,34 +63,51 @@ module.exports = grammar({
             alias($.pattern_tuple, $.tuple),
             $.label
         ),
-        pattern_tuple: $ => seq( '<', sep1(',', $.pattern), '>'),
+        pattern_tuple: $ => seq( '(', sep2(',', $.pattern), ')'),
 
         // expressions
         _expr: $ => choice(
-            prec(999, seq( '(', $._expr, ')')),
+            prec(998, seq( '(', $._expr, ')')),
             $.tuple,
             $.mul,
             $.div,
             $.add,
             $.sub,
-            $._term
+            // $.eq,
+            // $.neq,
+            // $.gt,
+            // $.gte,
+            // $.lt,
+            // $.lte,
+            // $.if_then_else
+            $._term,
         ),
 
-        tuple: $ => prec(999, seq( '<', sep1(',', $._expr), '>')),
+        // if_then_else: $ => seq('if', $._expr, 'then', $._expr, 'else'),
+        // tuple: $ => prec(999, seq( '<', sep1(',', $._expr), '>')),
+        tuple: $ => prec(999, seq( '(', sep2(',', $._expr), ')')),
 
         // left associative
         mul: $ => prec.left(801, seq($._expr, '*', $._expr)),
         div: $ => prec.left(801, seq($._expr, '/', $._expr)),
         add: $ => prec.left(800, seq($._expr, '+', $._expr)),
         sub: $ => prec.left(800, seq($._expr, '-', $._expr)),
+        // eq:  $ => prec.left(700, seq($._expr, '==', $._expr)),
+        // neq: $ => prec.left(700, seq($._expr, '!=', $._expr)),
+        // gt:  $ => prec.left(700, seq($._expr, '>', $._expr)),
+        // gte: $ => prec.left(700, seq($._expr, '>=', $._expr)),
+        // lt:  $ => prec.left(700, seq($._expr, '<', $._expr)),
+        // lte: $ => prec.left(700, seq($._expr, '<=', $._expr)),
 
         _term: $ => choice(
             prec(997, seq( '(', $._expr, ')')),
             $.integer,
             $.variable,
-            $.label
+            $.label,
+            $.boolean
         ),
 
+        boolean: $ => choice('True', 'False'),
         integer: $ => $._digit,
         variable: $ => $._name,
 
@@ -120,6 +137,7 @@ module.exports = grammar({
 
         _type_of_label: $ => seq($.label, ':', $._type),
 
+
         // names
         _name: $ => choice(
             prec(999, $.reserved_name),
@@ -133,6 +151,7 @@ module.exports = grammar({
         polarized_name: $ => choice(/\`[a-z](\w|')*/, /[a-z](\w|')*/),
         simple_name: $ => /[a-z](\w|')*/,
 
+
         // label
         label: $ => /[A-Z][A-Z0-9]*/,
 
@@ -145,10 +164,15 @@ module.exports = grammar({
         }
     })
 
+    // with at least 1 items
     function sep1(sep, rule) {
         return seq(rule, repeat(seq(sep, rule)))
     }
 
+    // with at least 2 items
+    function sep2(sep, rule) {
+        return seq(rule, sep, rule, repeat(seq(sep, rule)))
+    }
     // function sep0(sep, num, rule) {
     //     return seq(rule, repeat(prec(num,seq(sep, rule))))
     // }

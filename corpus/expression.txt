@@ -184,7 +184,7 @@ name = stdin?x . stdout!x + 4 . end
 Tuple - 1
 ==================
 
-name = stdin?x . stdout!<x, x + 4> . end
+name = stdin?x . stdout!(x, x + 4) . end
 
 ---
 
@@ -200,7 +200,7 @@ name = stdin?x . stdout!<x, x + 4> . end
 Tuple - 2
 ==================
 
-name = stdout!(<x, (x + 4), <x>>) . end
+name = stdout!((x, (x + 4), (x))) . end
 
 ---
 
@@ -210,15 +210,14 @@ name = stdout!(<x, (x + 4), <x>>) . end
             (tuple
                 (variable (name))
                 (add (variable (name)) (integer))
-                (tuple
-                    (variable (name))))
+                (variable (name)))
         (end))))
 
 ==================
 Tuple - 3
 ==================
 
-name = x?<x, y> . stdout!<x, y> . end
+name = x?(x, y) . stdout!(x, y) . end
 
 ---
 
