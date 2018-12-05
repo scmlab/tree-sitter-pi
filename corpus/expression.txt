@@ -323,3 +323,18 @@ name = c!if True then 3 else 4 . end
     (proc_declaration (process_name)
         (send (name) (if_then_else (boolean) (integer) (integer))
             (end))))
+
+==================
+String literals
+==================
+
+name = c!"" . stdout!"\a" . stdout!"a\".\"asd" . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (string)
+            (send (reserved_name) (string)
+                (send (reserved_name) (string)
+                    (end))))))

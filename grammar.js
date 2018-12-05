@@ -95,6 +95,7 @@ module.exports = grammar({
         _term: $ => choice(
             prec(997, seq( '(', $._expr, ')')),
             $.integer,
+            $.string,
             $.variable,
             $.label,
             $.boolean,
@@ -107,6 +108,7 @@ module.exports = grammar({
         ),
 
         boolean: $ => choice('True', 'False'),
+        string: $ => /\"[^\"\\]*(\\.[^\"\\]*)*\"/,
         integer: $ => $._digit,
         variable: $ => $._name,
 

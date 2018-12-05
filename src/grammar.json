@@ -777,6 +777,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
           "name": "variable"
         },
         {
@@ -825,6 +829,10 @@
           "value": "False"
         }
       ]
+    },
+    "string": {
+      "type": "PATTERN",
+      "value": "\\\"[^\\\"\\\\]*(\\\\.[^\\\"\\\\]*)*\\\""
     },
     "integer": {
       "type": "SYMBOL",
