@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Process replication
+
 ## 1.2.0
 
 * String literals
