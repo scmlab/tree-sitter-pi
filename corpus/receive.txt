@@ -28,7 +28,7 @@ name = c?{ A -> end }
 Complex - 2
 ==================
 
-name = c?{ A -> end
+name = c?{ A -> stdout!3 . end | name
          ; B -> end
          }
 
@@ -37,7 +37,10 @@ name = c?{ A -> end
 (program
     (proc_declaration (process_name)
         (recv (name)
-            (clause (pattern (label)) (end))
+            (clause (pattern (label))
+                (par
+                    (send (reserved_name) (integer) (end))
+                    (call (process_name))))
             (clause (pattern (label)) (end)))))
 
 ==================
