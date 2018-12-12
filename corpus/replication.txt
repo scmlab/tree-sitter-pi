@@ -1,0 +1,141 @@
+==================
+Simple
+==================
+
+name = * end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl (end))))
+
+==================
+Parenthesized
+==================
+
+name = (* (end))
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl (end))))
+
+==================
+Call
+==================
+
+name = * name
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl
+            (call (process_name)))))
+
+
+==================
+New channel - 1
+==================
+
+name = (nu x) * c!3 . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (nu (name)
+            (repl
+                (send (name) (integer)
+                    (end))))))
+
+==================
+New channel - 2
+==================
+
+name =  * c!3 . (nu x) end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl
+            (send (name) (integer)
+                (nu (name)
+                    (end))))))
+
+==================
+New channel - 3
+==================
+
+name =  * (nu x) end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl
+            (nu (name)
+                (end)))))
+
+==================
+Parellel - 1
+==================
+
+name =  * end | end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (par
+            (repl
+                (end))
+            (end))))
+
+==================
+Parellel - 2
+==================
+
+name =  * * end | * end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (par
+            (repl
+                (repl
+                (end)))
+            (repl (end)))))
+
+==================
+Parellel - 3
+==================
+
+name =  * (* end | end)
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl
+            (par
+                (repl (end))
+                (end)))))
+
+==================
+Receive
+==================
+
+name = * x?v . end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (repl
+            (recv (name)
+                (clause (pattern (name)) (end))))))

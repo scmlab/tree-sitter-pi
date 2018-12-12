@@ -151,3 +151,16 @@ name =  x!3 . x?y . end
         (send (name) (integer)
             (recv (name)
                 (clause (pattern (name)) (end))))))
+
+==================
+Replication
+==================
+
+name =  x!3 . * end
+
+---
+
+(program
+    (proc_declaration (process_name)
+        (send (name) (integer)
+            (repl (end)))))

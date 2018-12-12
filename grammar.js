@@ -31,11 +31,12 @@ module.exports = grammar({
             $.par,
             $.nu,
             $.end,
-            $.call
+            $.call,
+            $.repl
         ),
 
-        // 6 types of processes
-        par: $ => prec(10, prec.right(seq($._proc, parSymbol, $._proc))),
+        // 7 types of processes
+        par: $ => prec(11, prec.right(seq($._proc, parSymbol, $._proc))),
 
         nu: $ => prec(9, seq('(', 'nu', alias($.simple_name, $.name), optional(seq(':', $._type)), ')', $._proc)),
 
@@ -46,6 +47,9 @@ module.exports = grammar({
         end: $ => token('end'),
 
         call: $ => alias($.simple_name, $.process_name),
+
+        repl: $ => prec(7, seq('*', $._proc)),
+
 
         // clauses of recv
         _clauses: $ => choice(

@@ -82,12 +82,16 @@
         {
           "type": "SYMBOL",
           "name": "call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repl"
         }
       ]
     },
     "par": {
       "type": "PREC",
-      "value": 10,
+      "value": 11,
       "content": {
         "type": "PREC_RIGHT",
         "value": 0,
@@ -226,6 +230,23 @@
       },
       "named": true,
       "value": "process_name"
+    },
+    "repl": {
+      "type": "PREC",
+      "value": 7,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "*"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_proc"
+          }
+        ]
+      }
     },
     "_clauses": {
       "type": "CHOICE",
