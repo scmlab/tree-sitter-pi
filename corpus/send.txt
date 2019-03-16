@@ -2,7 +2,7 @@
 Simple - integer
 ==================
 
-name = c!3 . end
+name = c[3] . end
 
 ---
 
@@ -15,7 +15,7 @@ name = c!3 . end
 Simple - name
 ==================
 
-name = c!d . end
+name = c[d] . end
 
 ---
 
@@ -28,7 +28,7 @@ name = c!d . end
 Simple - label
 ==================
 
-name = c!HAHA . end
+name = c[HAHA] . end
 
 ---
 
@@ -41,7 +41,7 @@ name = c!HAHA . end
 Parenthesized
 ==================
 
-name = (c!3 . end)
+name = (c[3] . end)
 
 ---
 
@@ -54,7 +54,7 @@ name = (c!3 . end)
 Call
 ==================
 
-name = c!3 . name
+name = c[3] . name
 
 ---
 
@@ -67,7 +67,7 @@ name = c!3 . name
 New channel - 1
 ==================
 
-name = (nu x) c!3 . end
+name = (nu x) c[3] . end
 
 ---
 
@@ -81,7 +81,7 @@ name = (nu x) c!3 . end
 New channel - 2
 ==================
 
-name =  c!3 . (nu x) end
+name =  c[3] . (nu x) end
 
 ---
 
@@ -95,7 +95,7 @@ name =  c!3 . (nu x) end
 Parellel - 1
 ==================
 
-name =  x!3 . end | end
+name =  x[3] . end | end
 
 ---
 
@@ -110,7 +110,7 @@ name =  x!3 . end | end
 Parellel - 2
 ==================
 
-name = x!3 . end | x!4 . end
+name = x[3] . end | x[4] . end
 
 ---
 
@@ -126,7 +126,7 @@ name = x!3 . end | x!4 . end
 Receive - 1
 ==================
 
-name =  x!3 . end | x?y . end
+name =  x[3] . end | x?y . end
 
 ---
 
@@ -142,7 +142,7 @@ name =  x!3 . end | x?y . end
 Receive - 2
 ==================
 
-name =  x!3 . x?y . end
+name =  x[3] . x?y . end
 
 ---
 
@@ -156,7 +156,7 @@ name =  x!3 . x?y . end
 Replication
 ==================
 
-name =  x!3 . * end
+name =  x[3] . * end
 
 ---
 

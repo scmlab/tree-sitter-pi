@@ -198,11 +198,15 @@
           },
           {
             "type": "STRING",
-            "value": "!"
+            "value": "["
           },
           {
             "type": "SYMBOL",
             "name": "_expr"
+          },
+          {
+            "type": "STRING",
+            "value": "]"
           },
           {
             "type": "STRING",

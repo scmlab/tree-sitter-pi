@@ -42,7 +42,7 @@ module.exports = grammar({
 
         recv: $ => seq($._name, '?', $._clauses),
 
-        send: $ => prec(8, seq($._name, '!',  $._expr, '.', $._proc)),
+        send: $ => prec(8, seq($._name, '[',  $._expr, ']', '.', $._proc)),
 
         end: $ => token('end'),
 

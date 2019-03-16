@@ -46,13 +46,13 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/banacorn/.node-gyp/8.12.0/include/node \
-	-I/Users/banacorn/.node-gyp/8.12.0/src \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/openssl/config \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/openssl/openssl/include \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/uv/include \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/zlib \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/v8/include \
+	-I/Users/banacorn/.node-gyp/8.0.0/include/node \
+	-I/Users/banacorn/.node-gyp/8.0.0/src \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/openssl/config \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/openssl/openssl/include \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/uv/include \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/zlib \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/v8/include \
 	-I$(srcdir)/node_modules/nan \
 	-I$(srcdir)/src
 
@@ -97,13 +97,13 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/banacorn/.node-gyp/8.12.0/include/node \
-	-I/Users/banacorn/.node-gyp/8.12.0/src \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/openssl/config \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/openssl/openssl/include \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/uv/include \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/zlib \
-	-I/Users/banacorn/.node-gyp/8.12.0/deps/v8/include \
+	-I/Users/banacorn/.node-gyp/8.0.0/include/node \
+	-I/Users/banacorn/.node-gyp/8.0.0/src \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/openssl/config \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/openssl/openssl/include \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/uv/include \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/zlib \
+	-I/Users/banacorn/.node-gyp/8.0.0/deps/v8/include \
 	-I$(srcdir)/node_modules/nan \
 	-I$(srcdir)/src
 

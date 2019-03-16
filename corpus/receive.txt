@@ -28,7 +28,7 @@ name = c?{ A -> end }
 Complex - 2
 ==================
 
-name = c?{ A -> stdout!3 . end | name
+name = c?{ A -> stdout[3] . end | name
          ; B -> end
          }
 

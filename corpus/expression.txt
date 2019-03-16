@@ -2,7 +2,7 @@
 Simple
 ==================
 
-name = c!3 . end
+name = c[3] . end
 
 ---
 
@@ -15,7 +15,7 @@ name = c!3 . end
 Parenthesized
 ==================
 
-name = c!(3) . end
+name = c[(3)] . end
 
 ---
 
@@ -28,7 +28,7 @@ name = c!(3) . end
 * - 1
 ==================
 
-name = c!3 * (4) . end
+name = c[3 * (4)] . end
 
 ---
 
@@ -41,7 +41,7 @@ name = c!3 * (4) . end
 * - 2
 ==================
 
-name = c!1 * 2 * 3 . end
+name = c[1 * 2 * 3] . end
 
 ---
 
@@ -54,7 +54,7 @@ name = c!1 * 2 * 3 . end
 / - 1
 ==================
 
-name = c!(3 / (4)) / 2 . (end)
+name = c[(3 / (4)) / 2] . (end)
 
 ---
 
@@ -67,7 +67,7 @@ name = c!(3 / (4)) / 2 . (end)
 / - 2
 ==================
 
-name = c!(3 / (4 / 2)) . (end)
+name = c[(3 / (4 / 2))] . (end)
 
 ---
 
@@ -81,7 +81,7 @@ name = c!(3 / (4 / 2)) . (end)
 + - 1
 ==================
 
-name = c!3 + 4 . end
+name = c[3 + 4] . end
 
 ---
 
@@ -94,7 +94,7 @@ name = c!3 + 4 . end
 + - 2
 ==================
 
-name = c!3 + 4 + 6 . end
+name = c[3 + 4 + 6] . end
 
 ---
 
@@ -107,7 +107,7 @@ name = c!3 + 4 + 6 . end
 - - 1
 ==================
 
-name = c!3 - (4) . end
+name = c[3 - (4)] . end
 
 ---
 
@@ -120,7 +120,7 @@ name = c!3 - (4) . end
 - - 2
 ==================
 
-name = c!3 - (4) . end
+name = c[3 - (4)] . end
 
 ---
 
@@ -133,7 +133,7 @@ name = c!3 - (4) . end
 Mixed
 ==================
 
-name = c!3 * ((4 * 3) + (2 - 3) / 2) . end
+name = c[3 * ((4 * 3) + (2 - 3) / 2)] . end
 
 ---
 
@@ -152,7 +152,7 @@ name = c!3 * ((4 * 3) + (2 - 3) / 2) . end
 Variable
 ==================
 
-name = c?x . c!x + 4 * x . end
+name = c?x . c[x + 4 * x] . end
 
 ---
 
@@ -168,7 +168,7 @@ name = c?x . c!x + 4 * x . end
 Reserved Names
 ==================
 
-name = stdin?x . stdout!x + 4 . end
+name = stdin?x . stdout[x + 4] . end
 
 ---
 
@@ -184,7 +184,7 @@ name = stdin?x . stdout!x + 4 . end
 Tuple - 1
 ==================
 
-name = stdin?x . stdout!(x, x + 4) . end
+name = stdin?x . stdout[(x, x + 4)] . end
 
 ---
 
@@ -200,7 +200,7 @@ name = stdin?x . stdout!(x, x + 4) . end
 Tuple - 2
 ==================
 
-name = stdout!((x, (x + 4), (x))) . end
+name = stdout[((x, (x + 4), (x)))] . end
 
 ---
 
@@ -217,7 +217,7 @@ name = stdout!((x, (x + 4), (x))) . end
 Tuple - 3
 ==================
 
-name = x?(x, y) . stdout!(x, y) . end
+name = x?(x, y) . stdout[(x, y)] . end
 
 ---
 
@@ -237,7 +237,7 @@ name = x?(x, y) . stdout!(x, y) . end
 Boolean
 ==================
 
-name = c!True . end
+name = c[True] . end
 
 ---
 
@@ -250,7 +250,7 @@ name = c!True . end
 Comparison - 1
 ==================
 
-name = c!3 == 3 . end
+name = c[3 == 3] . end
 
 ---
 
@@ -263,7 +263,7 @@ name = c!3 == 3 . end
 Comparison - 2
 ==================
 
-name = c!3 != 3 . end
+name = c[3 != 3] . end
 
 ---
 
@@ -276,7 +276,7 @@ name = c!3 != 3 . end
 Comparison - 3
 ==================
 
-name = c!3 == 3 + 1 . end
+name = c[3 == 3 + 1] . end
 
 ---
 
@@ -289,7 +289,7 @@ name = c!3 == 3 + 1 . end
 Comparison - 4
 ==================
 
-name = c!(3 == 3) + 1 . end
+name = c[(3 == 3) + 1] . end
 
 ---
 
@@ -302,7 +302,7 @@ name = c!(3 == 3) + 1 . end
 Comparison - 5
 ==================
 
-name = c!1 > 3 + 3 <= 3 . end
+name = c[1 > 3 + 3 <= 3] . end
 
 ---
 
@@ -315,7 +315,7 @@ name = c!1 > 3 + 3 <= 3 . end
 If then else
 ==================
 
-name = c!if True then 3 else 4 . end
+name = c[if True then 3 else 4] . end
 
 ---
 
@@ -328,7 +328,7 @@ name = c!if True then 3 else 4 . end
 String literals
 ==================
 
-name = c!"" . stdout!"\a" . stdout!"a\".\"asd" . end
+name = c[""] . stdout["\a"] . stdout["a\".\"asd"] . end
 
 ---
 

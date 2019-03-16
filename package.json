@@ -4,7 +4,7 @@
   "description": "pi calculus",
   "main": "index.js",
   "scripts": {
-    "build": "npx tree-sitter generate && node-gyp build",
+    "build": "npx tree-sitter generate && npx node-gyp build",
     "install": "prebuild-install || node-gyp rebuild",
     "prebuild": "prebuild --all --strip --verbose",
     "prebuild:upload": "prebuild --upload-all",

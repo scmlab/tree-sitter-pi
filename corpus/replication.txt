@@ -40,7 +40,7 @@ name = * name
 New channel - 1
 ==================
 
-name = (nu x) * c!3 . end
+name = (nu x) * c[3] . end
 
 ---
 
@@ -55,7 +55,7 @@ name = (nu x) * c!3 . end
 New channel - 2
 ==================
 
-name =  * c!3 . (nu x) end
+name =  * c[3] . (nu x) end
 
 ---
 
